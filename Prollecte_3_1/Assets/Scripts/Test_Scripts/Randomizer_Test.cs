@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class RandomizerPosition : MonoBehaviour
+public class Randomizer_Test : MonoBehaviour
 {
 
     [SerializeField] private Transform[] positions;
