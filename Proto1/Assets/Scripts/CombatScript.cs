@@ -4,28 +4,29 @@ using DG.Tweening;
 public class CombatScript : MonoBehaviour
 {
     [SerializeField] InputHandler controls;
+    [SerializeField] private EnemyScript currentTarget;
     private RaycastHit info;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        if(Physics.SphereCast(transform.position,3f,CalculateMovement(),out info,50,-1))
+        if(controls.IsAttacking)
         {
-            if(info.collider)
+            if (Physics.SphereCast(transform.position, 3f, CalculateMovement(), out info, 50, -1))
             {
-                Gizmos.DrawWireSphere(info.collider.transform.position,2);
-            }
-            //If hit see if enemy is attackable
+                if (info.collider.transform.GetComponent<EnemyScript>().IsAttackable())
+                    currentTarget = info.collider.transform.GetComponent<EnemyScript>();
+                
+                //If hit see if enemy is attackable
 
                 //If attackable attack
+            }
         }
+        
         Debug.DrawRay(transform.position, CalculateMovement(),Color.red) ;
     }
 

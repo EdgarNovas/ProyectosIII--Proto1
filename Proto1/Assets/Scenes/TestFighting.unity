@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 15853617}
   - component: {fileID: 15853616}
   - component: {fileID: 15853615}
+  - component: {fileID: 15853619}
   m_Layer: 0
   m_Name: Enemy (4)
   m_TagString: Untagged
@@ -229,6 +230,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &15853619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15853614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &335879848
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +615,7 @@ GameObject:
   - component: {fileID: 1059344373}
   - component: {fileID: 1059344372}
   - component: {fileID: 1059344371}
+  - component: {fileID: 1059344375}
   m_Layer: 0
   m_Name: Enemy (3)
   m_TagString: Untagged
@@ -683,6 +714,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1059344375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059344370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1117173295
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +755,7 @@ GameObject:
   - component: {fileID: 1117173298}
   - component: {fileID: 1117173297}
   - component: {fileID: 1117173296}
+  - component: {fileID: 1117173300}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Untagged
@@ -793,6 +854,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117173300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117173295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1269957867
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +895,7 @@ GameObject:
   - component: {fileID: 1269957870}
   - component: {fileID: 1269957869}
   - component: {fileID: 1269957868}
+  - component: {fileID: 1269957872}
   m_Layer: 0
   m_Name: Enemy (5)
   m_TagString: Untagged
@@ -903,6 +994,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269957872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269957867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1453579738
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +1035,7 @@ GameObject:
   - component: {fileID: 1453579741}
   - component: {fileID: 1453579740}
   - component: {fileID: 1453579739}
+  - component: {fileID: 1453579743}
   m_Layer: 0
   m_Name: Enemy (6)
   m_TagString: Untagged
@@ -1013,6 +1134,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1453579743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453579738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1684701601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1175,7 @@ GameObject:
   - component: {fileID: 1684701604}
   - component: {fileID: 1684701603}
   - component: {fileID: 1684701602}
+  - component: {fileID: 1684701606}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Untagged
@@ -1123,6 +1274,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684701606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684701601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1809167770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1315,7 @@ GameObject:
   - component: {fileID: 1809167773}
   - component: {fileID: 1809167772}
   - component: {fileID: 1809167771}
+  - component: {fileID: 1809167775}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1233,6 +1414,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809167775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809167770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2007044561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1455,7 @@ GameObject:
   - component: {fileID: 2007044564}
   - component: {fileID: 2007044563}
   - component: {fileID: 2007044562}
+  - component: {fileID: 2007044566}
   m_Layer: 0
   m_Name: Enemy (7)
   m_TagString: Untagged
@@ -1343,6 +1554,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007044566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007044561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed067c49e225d194d98bdf8295551fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  isPreparingAttack: 0
+  isMoving: 0
+  isRetreating: 0
+  isLockedTarget: 0
+  isStunned: 0
+  isWaiting: 1
+  counterParticle: {fileID: 0}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRetreat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2137431518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1598,7 @@ GameObject:
   - component: {fileID: 2137431526}
   - component: {fileID: 2137431524}
   - component: {fileID: 2137431523}
+  - component: {fileID: 2137431527}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Untagged
@@ -1506,6 +1747,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 2137431523}
+  currentTarget: {fileID: 0}
+--- !u!114 &2137431527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137431518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddc0e645e548da40bbcd861d027e531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InputReader>k__BackingField: {fileID: 2137431523}
+  <CurrentTarget>k__BackingField: {fileID: 0}
+  <Controller>k__BackingField: {fileID: 2137431524}
+  <Animator>k__BackingField: {fileID: 0}
+  <ForceReceiver>k__BackingField: {fileID: 0}
+  <FreeLookMovementSpeed>k__BackingField: 12.86
+  <TargetingMovementSpeed>k__BackingField: 21.76
+  <RotationDamping>k__BackingField: 0.87
+  <DodgeDuration>k__BackingField: 1.17
+  <DodgeLength>k__BackingField: 0.88
+  <JumpForce>k__BackingField: 0.73
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
