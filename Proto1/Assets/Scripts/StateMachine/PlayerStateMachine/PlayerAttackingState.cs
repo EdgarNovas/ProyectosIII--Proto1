@@ -6,6 +6,9 @@ public class PlayerAttackingState : PlayerBaseState
 
     private float duration = 0.7f; // Duración de la animación de ataque
     private EnemyScript target;
+    float stopDistance = 1.5f; // tweak this depending on collider sizes
+    
+
 
     public PlayerAttackingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -16,13 +19,16 @@ public class PlayerAttackingState : PlayerBaseState
         
         if (FindTarget())
         {
-            // 2. Apuntar al objetivo y empezar la animación
-            //FaceTarget(target.transform);
+            //TODO: AVISAR AL ENEMY MANAGER DE CAMBIAR EL ESTADO 
+            // DEL ENEMIGO(TARGET) A ESPERAR POR EL GOLPE DEL PLAYER
+            // Apuntar al objetivo y empezar la animación
+            FaceTarget(target.transform);
+            MoveTowardsTarget();
             //stateMachine.Animator.CrossFadeInFixedTime("AttackDash", 0.1f);
         }
         else
         {
-            // 3. Si no hay objetivo, volver al estado anterior
+            // Si no hay objetivo, volver al estado anterior
             stateMachine.SwitchState( typeof( PlayerFreeLookState)); // O TargetingState
             return;
         }
@@ -31,27 +37,20 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (target == null) { return; }
-
-        // Moverse hacia el objetivo durante el ataque
-        MoveTowardsTarget(deltaTime);
-
-        duration -= deltaTime;
-        if (duration <= 0f)
-        {
-            // El ataque ha terminado, volvemos a un estado de locomoción
-            //ReturnToLocomotion();
-        }
+       
+       
     }
 
     public override void Exit()
     {
+        target = null;
         
     }
 
     private bool FindTarget()
     {
         // Usamos SphereCast para encontrar un enemigo en frente
+        //Y que el jugador no tenga que clavar el raycast
         RaycastHit hit;
         
 
@@ -59,18 +58,22 @@ public class PlayerAttackingState : PlayerBaseState
         {
             if (hit.collider.TryGetComponent<EnemyScript>(out EnemyScript enemy) && enemy.IsAttackable())
             {
-                this.target = enemy;
+                target = enemy;
                 return true;
             }
         }
         return false;
     }
 
-    private void MoveTowardsTarget(float deltaTime)
+    private void MoveTowardsTarget()
     {
-        stateMachine.transform.DOMove(target.transform.position, 15f)
+        Vector3 directionToPlayer = (stateMachine.transform.position - target.transform.position).normalized;
+        Vector3 targetPos = target.transform.position + directionToPlayer * stopDistance;
+        
+
+        stateMachine.transform.DOMove(targetPos, 15f)
             .SetSpeedBased(true)
-            .SetEase(Ease.Linear)
+            .SetEase(Ease.Flash)
             .OnComplete(() =>
             {
                 stateMachine.SwitchState(typeof(PlayerFreeLookState));

@@ -34,4 +34,9 @@ public class StateMachine : MonoBehaviour
             currentState.Enter();
         }
     }
+
+    public State GetCurrentState()
+    {
+        return currentState;
+    }
 }

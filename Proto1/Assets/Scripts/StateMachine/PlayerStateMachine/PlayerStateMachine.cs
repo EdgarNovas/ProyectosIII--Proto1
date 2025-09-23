@@ -44,13 +44,13 @@ public class PlayerStateMachine : StateMachine
 
     public Transform MainCameraTransform { get; private set; }
 
-
+  
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        GameManager.Instance.AddPlayer(transform);
         MainCameraTransform = Camera.main.transform;
 
         AddState(new PlayerFreeLookState(this));

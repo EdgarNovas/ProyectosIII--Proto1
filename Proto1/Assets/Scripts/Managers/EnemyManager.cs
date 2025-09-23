@@ -4,6 +4,74 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager Instance { get; private set; }
+    // Ahora guardamos referencias a los StateMachines
+    private List<EnemyStateMachine> enemies = new List<EnemyStateMachine>();
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            // Si ya existe un manager, este se destruye
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Si no existe, este se convierte en la instancia
+            Instance = this;
+        }
+    }
+
+    void Start()
+    {
+        StartCoroutine(AI_Loop());
+    }
+
+    IEnumerator AI_Loop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
+
+            // Elegir un enemigo disponible para atacar
+            EnemyStateMachine attackingEnemy = GetAvailableEnemy();
+
+            if (attackingEnemy != null)
+            {
+                // Le ordenamos que cambie al estado de ataque
+                attackingEnemy.SwitchState(typeof(EnemyAttackState));
+            }
+        }
+    }
+
+    private EnemyStateMachine GetAvailableEnemy()
+    {
+        List<EnemyStateMachine> availableEnemies = new List<EnemyStateMachine>();
+        foreach (var enemy in enemies)
+        {
+            // Un enemigo está disponible si está vivo y en el estado Idle
+            if (enemy.Health > 0 && enemy.GetCurrentState().GetType() == typeof(EnemyIdleState))
+            {
+                availableEnemies.Add(enemy);
+            }
+        }
+
+        if (availableEnemies.Count == 0) return null;
+
+        // Elige uno al azar de los disponibles
+        return availableEnemies[Random.Range(0, availableEnemies.Count)];
+    }
+    
+    public void AddEnemy(EnemyStateMachine enemy)
+    {
+        enemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(EnemyStateMachine enemy)
+    { 
+        enemies.Remove(enemy);
+    }
+
     /*
     private EnemyScript[] enemies;
     public EnemyStruct[] allEnemies;

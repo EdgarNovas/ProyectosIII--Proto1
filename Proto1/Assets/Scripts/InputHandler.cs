@@ -95,8 +95,6 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveVector = context.ReadValue<Vector2>();
-
-        Debug.Log(MoveVector);
     }
 
     public void OnNext(InputAction.CallbackContext context)
