@@ -48,16 +48,17 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log("Moving");
+        
         if (stateMachine.InputReader.IsAttacking)
         {
             stateMachine.SwitchState(typeof( PlayerAttackingState));
 
-            Debug.Log("Attacking");
             return;
         }
 
         Vector3 movement = CalculateMovement();
+
+        
 
         //Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
         /*
@@ -70,6 +71,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
         */
         FaceMovementDirection(movement, deltaTime);
+
+        Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
     }
 
     public override void Exit()
@@ -87,6 +90,7 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
+        
     }
 
     Vector3 CalculateMovement()
