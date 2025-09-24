@@ -34,7 +34,7 @@ public abstract class PlayerBaseState : State
 
         enemyDirection.y = 0f;
 
-        stateMachine.transform.rotation = Quaternion.LookRotation(enemyDirection);
+        stateMachine.transform.rotation = Quaternion.LookRotation(enemyDirection * stateMachine.RotationSpeed);
     }
 
     /*

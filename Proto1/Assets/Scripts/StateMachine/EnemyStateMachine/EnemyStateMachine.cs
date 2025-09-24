@@ -6,6 +6,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; } = 3f;
+    [field: SerializeField] public float RotationSpeed { get; private set; } = 3f;
     [field: SerializeField] public float AttackRange { get; private set; } = 2f;
     [field: SerializeField] public int Health { get; private set; } = 3;
 
@@ -17,8 +18,9 @@ public class EnemyStateMachine : StateMachine
         
         AddState(new EnemyIdleState(this));
         AddState(new EnemyAttackState(this));
-        /*
+        
         AddState(new EnemyRetreatState(this));
+        /*
         AddState(new EnemyHitState(this));
         AddState(new EnemyDeadState(this));
         */

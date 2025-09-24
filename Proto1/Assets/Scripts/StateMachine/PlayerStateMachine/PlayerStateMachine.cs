@@ -24,6 +24,8 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float RotationDamping { get; private set; }
 
+    [field: SerializeField] public float RotationSpeed { get; private set; } = 3f;
+
     [field: SerializeField] public float DodgeDuration { get; private set; }
 
     [field: SerializeField] public float DodgeLength { get; private set; }
