@@ -39,7 +39,7 @@ public class EnemyManager : MonoBehaviour
             if (attackingEnemy != null)
             {
                 // Le ordenamos que cambie al estado de ataque
-                attackingEnemy.SwitchState(typeof(EnemyAttackState));
+                attackingEnemy.SwitchState(typeof(EnemyChaseState));
             }
         }
     }

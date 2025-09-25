@@ -276,7 +276,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 15853621}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &15853621
 CharacterController:
@@ -1014,7 +1016,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1059344377}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1059344377
 CharacterController:
@@ -1198,7 +1202,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1117173302}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1117173302
 CharacterController:
@@ -1382,7 +1388,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1269957874}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1269957874
 CharacterController:
@@ -1566,7 +1574,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1453579745}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1453579745
 CharacterController:
@@ -1750,7 +1760,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1684701608}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1684701608
 CharacterController:
@@ -2180,7 +2192,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1809167777}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &1809167777
 CharacterController:
@@ -2364,7 +2378,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 2007044568}
   <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
+  <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
 --- !u!143 &2007044568
 CharacterController:
@@ -2577,6 +2593,7 @@ MonoBehaviour:
   <FreeLookMovementSpeed>k__BackingField: 12
   <TargetingMovementSpeed>k__BackingField: 21.76
   <RotationDamping>k__BackingField: 0.87
+  <RotationSpeed>k__BackingField: 3
   <DodgeDuration>k__BackingField: 1.17
   <DodgeLength>k__BackingField: 0.88
   <JumpForce>k__BackingField: 0.73

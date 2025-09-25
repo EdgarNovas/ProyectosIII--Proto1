@@ -8,10 +8,11 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float MovementSpeed { get; private set; } = 3f;
     [field: SerializeField] public float RotationSpeed { get; private set; } = 3f;
     [field: SerializeField] public float AttackRange { get; private set; } = 2f;
+    [field: SerializeField] public float DetectionRange { get; private set; } = 6f;
     [field: SerializeField] public int Health { get; private set; } = 3;
 
+    public bool IsInParryableWindow { get; set; } = false;
 
-    
     void Awake()
     {
         // Creamos una instancia de cada estado que el enemigo pueda tener
@@ -20,6 +21,7 @@ public class EnemyStateMachine : StateMachine
         AddState(new EnemyAttackState(this));
         
         AddState(new EnemyRetreatState(this));
+        AddState(new EnemyChaseState(this));
         /*
         AddState(new EnemyHitState(this));
         AddState(new EnemyDeadState(this));

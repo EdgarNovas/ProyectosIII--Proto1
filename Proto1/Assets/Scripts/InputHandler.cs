@@ -63,8 +63,9 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
     }
      */
 
-    public void OnCrouch(InputAction.CallbackContext context)
+    public void OnStun(InputAction.CallbackContext context)
     {
+        if (!context.performed) { return; }
         
     }
 
