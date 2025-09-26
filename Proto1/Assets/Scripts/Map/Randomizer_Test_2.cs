@@ -19,6 +19,10 @@ public class Randomizer_Test_2 : MonoBehaviour
         Colocate();
     }
 
+    // awake: inmediat abans de start
+
+
+
     // Update is called once per frame
     void Update()
     {
