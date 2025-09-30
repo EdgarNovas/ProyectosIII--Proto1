@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
@@ -14,11 +15,13 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
- //   [field: SerializeField] public Targeter Targeter { get; private set; }
+    [field: SerializeField] public CinemachineCamera camera_CM { get; private set; }
 
-  //  [field: SerializeField] public Health Health { get; private set; }
+//   [field: SerializeField] public Targeter Targeter { get; private set; }
 
-    [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+//  [field: SerializeField] public Health Health { get; private set; }
+
+[field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
 
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
 

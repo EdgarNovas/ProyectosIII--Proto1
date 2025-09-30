@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -25,6 +26,11 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(AI_Loop());
+    }
+
+    void OnDestroy()
+    {
+        StopCoroutine(AI_Loop());
     }
 
     IEnumerator AI_Loop()
@@ -62,6 +68,16 @@ public class EnemyManager : MonoBehaviour
         return availableEnemies[Random.Range(0, availableEnemies.Count)];
     }
     
+    public void PrepareEnemyForHit(EnemyStateMachine target)
+    {
+        target.SwitchState(typeof(EnemyWaitForHitState));
+    }
+
+    public void GetHit(EnemyStateMachine target)
+    {
+        target.SwitchState(typeof(EnemyHitState));
+    }
+
     public void AddEnemy(EnemyStateMachine enemy)
     {
         enemies.Add(enemy);

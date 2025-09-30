@@ -33,8 +33,8 @@ public class ForceReceiver : MonoBehaviour
             verticalVelocity += playerGravity * Time.deltaTime;
         }
 
-        impact = Vector3.SmoothDamp(impact,Vector3.zero, ref dampingVelocity,drag);
-        if(agent !=  null) { 
+        impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
+        if (agent !=  null) { 
 
             if(impact.sqrMagnitude <  0.2f*0.2f)
             {

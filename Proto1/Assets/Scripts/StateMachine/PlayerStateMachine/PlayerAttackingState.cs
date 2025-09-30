@@ -3,9 +3,9 @@ using DG.Tweening;
 
 public class PlayerAttackingState : PlayerBaseState
 {
-
+    float defaultFOV;
     private float duration = 0.7f; // Duración de la animación de ataque
-    private EnemyScript target;
+    private EnemyStateMachine target;
     float stopDistance = 1.5f; // tweak this depending on collider sizes
     
 
@@ -23,7 +23,10 @@ public class PlayerAttackingState : PlayerBaseState
             // DEL ENEMIGO(TARGET) A ESPERAR POR EL GOLPE DEL PLAYER
             // Apuntar al objetivo y empezar la animación
             FaceTarget(target.transform);
+            EnemyManager.Instance.PrepareEnemyForHit(target);
             MoveTowardsTarget();
+            defaultFOV = stateMachine.camera_CM.Lens.FieldOfView;
+            
             //stateMachine.Animator.CrossFadeInFixedTime("AttackDash", 0.1f);
         }
         else
@@ -37,8 +40,12 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-       
-       
+        if(stateMachine.camera_CM.Lens.FieldOfView < stateMachine.camera_CM.Lens.FieldOfView + 40)
+        {
+            stateMachine.camera_CM.Lens.FieldOfView += 20 * deltaTime;
+        }
+        
+
     }
 
     public override void Exit()
@@ -56,7 +63,7 @@ public class PlayerAttackingState : PlayerBaseState
 
         if (Physics.SphereCast(stateMachine.transform.position, 3f, CalculateMovement(), out hit, 50f))
         {
-            if (hit.collider.TryGetComponent<EnemyScript>(out EnemyScript enemy) && enemy.IsAttackable())
+            if (hit.collider.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemy) && enemy.IsAttackable())
             {
                 target = enemy;
                 return true;
@@ -76,8 +83,13 @@ public class PlayerAttackingState : PlayerBaseState
             .SetEase(Ease.Flash)
             .OnComplete(() =>
             {
+                stateMachine.camera_CM.Lens.FieldOfView = defaultFOV;
+                Vector3 knockback = (target.transform.position - GameManager.Instance.GetPlayer().position).normalized;
+                target.TakeDamage(1, knockback);
                 stateMachine.SwitchState(typeof(PlayerFreeLookState));
             });
+
+
     }
 
     Vector3 CalculateMovement()
