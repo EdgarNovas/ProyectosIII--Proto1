@@ -282,6 +282,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 15853622}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &15853621
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1040,6 +1043,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1059344378}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &1059344377
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1244,6 +1250,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1117173303}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &1117173302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1448,6 +1457,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1269957875}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &1269957874
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1652,6 +1664,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1453579746}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &1453579745
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1856,6 +1871,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1684701609}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &1684701608
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1911,6 +1929,7 @@ GameObject:
   - component: {fileID: 1786793500}
   - component: {fileID: 1786793499}
   - component: {fileID: 1786793498}
+  - component: {fileID: 1786793503}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -2143,6 +2162,23 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &1786793503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786793496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.3
+  FrequencyGain: 2
+  m_NoiseOffsets: {x: 850.3356, y: -349.83362, z: -327.9506}
 --- !u!1 &2007044561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,6 +2342,9 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 2007044569}
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &2007044568
 CharacterController:
   m_ObjectHideFlags: 0

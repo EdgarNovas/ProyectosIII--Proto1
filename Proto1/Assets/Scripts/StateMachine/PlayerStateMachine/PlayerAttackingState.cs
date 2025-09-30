@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Unity.Cinemachine;
 
 public class PlayerAttackingState : PlayerBaseState
 {
@@ -85,6 +86,7 @@ public class PlayerAttackingState : PlayerBaseState
             {
                 stateMachine.camera_CM.Lens.FieldOfView = defaultFOV;
                 Vector3 knockback = (target.transform.position - GameManager.Instance.GetPlayer().position).normalized;
+                stateMachine.StartCameraShake(.2f);
                 target.TakeDamage(1, knockback);
                 stateMachine.SwitchState(typeof(PlayerFreeLookState));
             });
@@ -105,4 +107,6 @@ public class PlayerAttackingState : PlayerBaseState
 
         return forward * stateMachine.InputReader.MoveVector.y + right * stateMachine.InputReader.MoveVector.x;
     }
+
+
 }

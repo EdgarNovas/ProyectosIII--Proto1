@@ -64,6 +64,32 @@ public class PlayerStateMachine : StateMachine
         SwitchState(typeof(PlayerFreeLookState));
     }
 
+    public void StartCameraShake(float duration)
+    {
+        StartCoroutine(ShakeRoutine(duration));
+    }
+
+    public IEnumerator ShakeRoutine(float duration)
+    {
+        camera_CM.GetComponent<CinemachineBasicMultiChannelPerlin>().AmplitudeGain = 5f;
+        camera_CM.GetComponent<CinemachineBasicMultiChannelPerlin>().FrequencyGain = 2f;
+        float elapsed = 0f;
+
+
+        // Gradually reduce shake over time
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            
+
+
+            yield return null;
+        }
+
+        camera_CM.GetComponent<CinemachineBasicMultiChannelPerlin>().AmplitudeGain = 0f;
+        camera_CM.GetComponent<CinemachineBasicMultiChannelPerlin>().FrequencyGain = 0f;
+    }
+
     private void OnEnable()
     {
        // Health.OnTakeDamage += HandleTakeDamage;
@@ -85,5 +111,7 @@ public class PlayerStateMachine : StateMachine
     {
        // SwitchState(new PlayerDeadState(this));
     }
+
+
 
 }
