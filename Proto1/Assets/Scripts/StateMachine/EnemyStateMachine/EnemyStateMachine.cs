@@ -14,6 +14,8 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
+    [field: SerializeField] public ParticleSystem counterSystem { get; private set; }
+
     public bool IsInParryableWindow { get; set; } = false;
 
     public UnityEvent<EnemyStateMachine> OnDamage;
@@ -59,6 +61,7 @@ public class EnemyStateMachine : StateMachine
         }
         else
         {
+            EnemyManager.Instance.RemoveEnemy(this);
             //SwitchState(typeof(EnemyDeadState));
         }
     }

@@ -8,6 +8,7 @@ public class PlayerAttackingState : PlayerBaseState
     private float duration = 0.7f; // Duración de la animación de ataque
     private EnemyStateMachine target;
     float stopDistance = 1.5f; // tweak this depending on collider sizes
+    float stopHitTime = 0.06f;
     
 
 
@@ -86,6 +87,7 @@ public class PlayerAttackingState : PlayerBaseState
             {
                 stateMachine.camera_CM.Lens.FieldOfView = defaultFOV;
                 Vector3 knockback = (target.transform.position - GameManager.Instance.GetPlayer().position).normalized;
+                stateMachine.StartHitStop(stopHitTime);
                 stateMachine.StartCameraShake(.2f);
                 target.TakeDamage(1, knockback);
                 stateMachine.SwitchState(typeof(PlayerFreeLookState));

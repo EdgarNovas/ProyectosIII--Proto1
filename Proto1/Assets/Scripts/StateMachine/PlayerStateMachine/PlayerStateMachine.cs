@@ -69,6 +69,19 @@ public class PlayerStateMachine : StateMachine
         StartCoroutine(ShakeRoutine(duration));
     }
 
+    IEnumerator HitStop(float duration)
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1f;
+    }
+
+    public void StartHitStop(float duration)
+    {
+        StartCoroutine(HitStop(duration));
+    }
+
+
     public IEnumerator ShakeRoutine(float duration)
     {
         camera_CM.GetComponent<CinemachineBasicMultiChannelPerlin>().AmplitudeGain = 5f;

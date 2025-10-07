@@ -7,6 +7,7 @@ public class EnemyHitState : EnemyBaseState
     private float drag = 0.7f;
     private Vector3 knockbackDirection;
     private Vector3 dampingVelocity;
+    
 
     public EnemyHitState(EnemyStateMachine stateMachine) : base(stateMachine){ }
 

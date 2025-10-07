@@ -88,6 +88,12 @@ public class EnemyManager : MonoBehaviour
         enemies.Remove(enemy);
     }
 
+    public bool IsOnlyEnemy()
+    {
+        Debug.Log(enemies.Count < 2);
+        return enemies.Count < 2;
+    }
+
     /*
     private EnemyScript[] enemies;
     public EnemyStruct[] allEnemies;
