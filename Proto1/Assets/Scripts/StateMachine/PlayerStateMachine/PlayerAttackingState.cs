@@ -8,7 +8,7 @@ public class PlayerAttackingState : PlayerBaseState
     private float duration = 0.7f; // Duración de la animación de ataque
     private EnemyStateMachine target;
     float stopDistance = 1.5f; // tweak this depending on collider sizes
-    float stopHitTime = 0.06f;
+    float stopHitTime = 0.1f;
     
 
 
