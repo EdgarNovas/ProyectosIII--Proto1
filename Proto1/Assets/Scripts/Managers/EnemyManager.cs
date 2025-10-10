@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -27,6 +28,11 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(AI_Loop());
     }
 
+    void OnDestroy()
+    {
+        StopCoroutine(AI_Loop());
+    }
+
     IEnumerator AI_Loop()
     {
         while (true)
@@ -39,7 +45,7 @@ public class EnemyManager : MonoBehaviour
             if (attackingEnemy != null)
             {
                 // Le ordenamos que cambie al estado de ataque
-                attackingEnemy.SwitchState(typeof(EnemyAttackState));
+                attackingEnemy.SwitchState(typeof(EnemyChaseState));
             }
         }
     }
@@ -62,6 +68,16 @@ public class EnemyManager : MonoBehaviour
         return availableEnemies[Random.Range(0, availableEnemies.Count)];
     }
     
+    public void PrepareEnemyForHit(EnemyStateMachine target)
+    {
+        target.SwitchState(typeof(EnemyWaitForHitState));
+    }
+
+    public void GetHit(EnemyStateMachine target)
+    {
+        target.SwitchState(typeof(EnemyHitState));
+    }
+
     public void AddEnemy(EnemyStateMachine enemy)
     {
         enemies.Add(enemy);
@@ -70,6 +86,12 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemy(EnemyStateMachine enemy)
     { 
         enemies.Remove(enemy);
+    }
+
+    public bool IsOnlyEnemy()
+    {
+        Debug.Log(enemies.Count < 2);
+        return enemies.Count < 2;
     }
 
     /*

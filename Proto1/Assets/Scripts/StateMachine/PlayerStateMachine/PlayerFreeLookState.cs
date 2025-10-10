@@ -58,7 +58,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        
+
 
         //Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
         /*
@@ -70,7 +70,11 @@ public class PlayerFreeLookState : PlayerBaseState
         
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
         */
-        FaceMovementDirection(movement, deltaTime);
+        if(!Vector3.Equals(movement, Vector3.zero))
+        {
+            FaceMovementDirection(movement, deltaTime);
+        }
+        
 
         Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
     }
