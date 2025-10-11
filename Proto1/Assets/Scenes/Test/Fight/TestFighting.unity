@@ -921,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &438486342
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2895,8 +2895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToPaint: {fileID: 2032523336382521529, guid: 9cdd7199decb9354ebf467043da0ed29, type: 3}
-  brushRadius: 14.97
-  brushDensity: 5
+  brushRadius: 7.87
+  brushDensity: 2
   parentTransform: {fileID: 1640916799}
 --- !u!4 &1640916799
 Transform:
