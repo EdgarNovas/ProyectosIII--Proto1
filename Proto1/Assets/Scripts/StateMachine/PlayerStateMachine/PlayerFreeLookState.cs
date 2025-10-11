@@ -10,6 +10,10 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
 
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
+    private readonly int Walking = Animator.StringToHash("Walking");
+    private readonly int Idle = Animator.StringToHash("Idle");
+
+
 
 
     private const float CrossFadeDuration = 0.1f;
@@ -58,7 +62,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        
+
 
         //Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
         /*
@@ -70,7 +74,16 @@ public class PlayerFreeLookState : PlayerBaseState
         
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
         */
-        FaceMovementDirection(movement, deltaTime);
+        if(!Vector3.Equals(movement, Vector3.zero))
+        {
+            FaceMovementDirection(movement, deltaTime);
+            stateMachine.Animator.Play(Walking);
+        }
+        else
+        {
+            stateMachine.Animator.Play(Idle);
+        }
+        
 
         Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
     }

@@ -24,6 +24,7 @@ public class ForceReceiver : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(controller.isGrounded + " Is grounded");
         if (verticalVelocity < 0f && controller.isGrounded)
         {
             verticalVelocity = playerGravity * Time.deltaTime; ;
@@ -33,8 +34,8 @@ public class ForceReceiver : MonoBehaviour
             verticalVelocity += playerGravity * Time.deltaTime;
         }
 
-        impact = Vector3.SmoothDamp(impact,Vector3.zero, ref dampingVelocity,drag);
-        if(agent !=  null) { 
+        impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
+        if (agent !=  null) { 
 
             if(impact.sqrMagnitude <  0.2f*0.2f)
             {
@@ -43,6 +44,8 @@ public class ForceReceiver : MonoBehaviour
             }
 
         }
+
+        controller.Move(Movement);
     }
 
     public void AddForce(Vector3 force)
