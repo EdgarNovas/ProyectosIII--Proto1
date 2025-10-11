@@ -90,7 +90,6 @@ public class EnemyManager : MonoBehaviour
 
     public bool IsOnlyEnemy()
     {
-        Debug.Log(enemies.Count < 2);
         return enemies.Count < 2;
     }
 

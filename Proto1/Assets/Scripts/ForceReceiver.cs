@@ -24,6 +24,7 @@ public class ForceReceiver : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(controller.isGrounded + " Is grounded");
         if (verticalVelocity < 0f && controller.isGrounded)
         {
             verticalVelocity = playerGravity * Time.deltaTime; ;
@@ -43,6 +44,8 @@ public class ForceReceiver : MonoBehaviour
             }
 
         }
+
+        controller.Move(Movement);
     }
 
     public void AddForce(Vector3 force)
