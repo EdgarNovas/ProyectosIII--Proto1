@@ -66,10 +66,10 @@ Material:
     - _DepthFallOff: 8.68
     - _FoamAmount: 1
     - _FoamCutOut: 0.01
-    - _FoamDepth: 0.79
-    - _FoamFallOff: 18.3
-    - _FoamShoreWidth: 3.38
-    - _FoamTiling: 5
+    - _FoamDepth: 1.96
+    - _FoamFallOff: 15.9
+    - _FoamShoreWidth: 1.45
+    - _FoamTiling: 3.99
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaveIntensity: 0.12
