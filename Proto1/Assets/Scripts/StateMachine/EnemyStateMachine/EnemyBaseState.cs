@@ -24,5 +24,17 @@ public abstract class EnemyBaseState : State
         
     }
 
+    protected void FacePlayerInstant()
+    {
+
+        if (GameManager.Instance.GetPlayer() == null) { return; }
+
+        Vector3 lookPos = GameManager.Instance.GetPlayer().position - stateMachine.transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        stateMachine.transform.rotation = rotation;
+
+    }
+
 
 }

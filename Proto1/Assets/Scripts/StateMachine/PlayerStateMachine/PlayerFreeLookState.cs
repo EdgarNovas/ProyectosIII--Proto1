@@ -77,11 +77,13 @@ public class PlayerFreeLookState : PlayerBaseState
         if(!Vector3.Equals(movement, Vector3.zero))
         {
             FaceMovementDirection(movement, deltaTime);
-            stateMachine.Animator.Play(Walking);
+            stateMachine.Animator.CrossFadeInFixedTime(Walking, 0.1f);
+            //stateMachine.Animator.Play(Walking);
         }
         else
         {
-            stateMachine.Animator.Play(Idle);
+            //stateMachine.Animator.Play(Idle);
+            stateMachine.Animator.CrossFadeInFixedTime(Idle, 0.1f);
         }
         
 
@@ -104,6 +106,13 @@ public class PlayerFreeLookState : PlayerBaseState
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
         
+    }
+
+    private void FaceMovementDirectionInstant(Vector3 movement)
+    {
+        stateMachine.transform.rotation = Quaternion.LookRotation(movement);
+            
+
     }
 
     Vector3 CalculateMovement()

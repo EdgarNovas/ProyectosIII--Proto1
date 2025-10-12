@@ -33,9 +33,9 @@ public class EnemyAttackState : EnemyBaseState
 
         FacePlayer();
 
-        // --- LÍNEA CLAVE FALTANTE ---
-        timer -= deltaTime; // <-- AÑADE ESTA LÍNEA AQUÍ
-                            // ----------------------------
+        
+        timer -= deltaTime; 
+                            
 
         if (timer <= 0 && !stateMachine.IsInParryableWindow)
         {
