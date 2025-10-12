@@ -79,6 +79,6 @@ Material:
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
     - _FoamSpeed: {r: 0, g: 0.6, b: 0, a: 0}
     - _MainColor: {r: 0.06132078, g: 0.5569245, b: 1, a: 0}
-    - _ShoreColor: {r: 0, g: 0.5612075, b: 0.8301887, a: 0}
+    - _ShoreColor: {r: 0, g: 0.470897, b: 0.6981132, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
