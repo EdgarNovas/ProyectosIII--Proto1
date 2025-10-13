@@ -793,6 +793,7 @@ GameObject:
   - component: {fileID: 387392378}
   - component: {fileID: 387392377}
   - component: {fileID: 387392379}
+  - component: {fileID: 387392380}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -817,7 +818,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -903,6 +904,21 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &387392380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387392376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8bca95f7c947b4db5fb152a0d693d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anisotropy: 1
+  scattering: 7.05
+  radius: 0.062
 --- !u!1 &438486341
 GameObject:
   m_ObjectHideFlags: 0
