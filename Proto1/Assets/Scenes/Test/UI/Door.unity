@@ -1270,8 +1270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16442f6cf4169c342b0240e8f2d32ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  interactText: {fileID: 0}
+  player: {fileID: 524031542}
+  interactText: {fileID: 900688110}
   distance: 3
 --- !u!65 &1659388055
 BoxCollider:
