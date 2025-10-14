@@ -93,6 +93,43 @@ public class EnemyManager : MonoBehaviour
         return enemies.Count < 2;
     }
 
+    /// <summary>
+    /// Busca en la lista de enemigos activos si alguno es un objetivo válido para un parry.
+    /// </summary>
+    /// <param name="playerTransform">La posición y rotación del jugador.</param>
+    /// <param name="parryAngle">El ángulo (en grados) del cono frontal del jugador para el parry.</param>
+    /// <returns>El primer enemigo que cumpla las condiciones, o null si no hay ninguno.</returns>
+    public EnemyStateMachine GetParryableEnemy(Transform playerTransform, float parryAngle)
+    {
+        // Recorremos todos los enemigos activos en la escena.
+        foreach (EnemyStateMachine enemy in enemies)
+        {
+            // 1. Primera condición: ¿Está el enemigo en su ventana de ataque "parreable"?
+            // Esta bandera la controla el 'EnemyAttackState' del enemigo.
+            if (!enemy.IsInParryableWindow)
+            {
+                continue; // Si no es parreable, pasamos al siguiente enemigo de la lista.
+            }
+
+            // 2. Segunda condición: ¿Está el jugador mirando hacia el enemigo?
+            // Calculamos el vector que va desde el jugador hacia el enemigo.
+            Vector3 directionToEnemy = (enemy.transform.position - playerTransform.position).normalized;
+
+            // Calculamos el ángulo entre la dirección a la que mira el jugador y la dirección hacia el enemigo.
+            float angle = Vector3.Angle(playerTransform.forward, directionToEnemy);
+
+            // Si el ángulo es menor que el permitido, significa que el jugador está encarado al enemigo.
+            if (angle <= parryAngle)
+            {
+                // ¡Hemos encontrado un objetivo válido! Lo devolvemos inmediatamente.
+                return enemy;
+            }
+        }
+
+        // Si el bucle termina y no hemos encontrado ningún enemigo que cumpla las condiciones, devolvemos null.
+        return null;
+    }
+
     /*
     private EnemyScript[] enemies;
     public EnemyStruct[] allEnemies;

@@ -278,6 +278,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 15853621}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -1645,6 +1646,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1059344377}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -1933,6 +1935,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1117173302}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -1987,6 +1990,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2592248844391923689, guid: 39b4ea3c468e0774997a432c68516796, type: 3}
   m_PrefabInstance: {fileID: 2761239305968882569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1256496516 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3443427243522135706, guid: eb4de6c53a9ce414cba14fed65de7faa, type: 3}
+  m_PrefabInstance: {fileID: 847939836}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1269957867
 GameObject:
@@ -2147,6 +2155,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1269957874}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -2257,6 +2266,11 @@ PrefabInstance:
 --- !u!4 &1299853152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3443427243522135704, guid: eb4de6c53a9ce414cba14fed65de7faa, type: 3}
+  m_PrefabInstance: {fileID: 1299853151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1299853154 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3443427243522135706, guid: eb4de6c53a9ce414cba14fed65de7faa, type: 3}
   m_PrefabInstance: {fileID: 1299853151}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359858052
@@ -2660,6 +2674,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1453579745}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -3088,12 +3103,13 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 1684701608}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 1.2
   <DetectionRange>k__BackingField: 10
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 1684701609}
-  <counterSystem>k__BackingField: {fileID: 0}
+  <counterSystem>k__BackingField: {fileID: 1299853154}
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -3680,6 +3696,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 2007044568}
   <MovementSpeed>k__BackingField: 3
+  <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 5
   <DetectionRange>k__BackingField: 10
@@ -3868,6 +3885,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 344dbed58a09cc443bcce88703a9c401, type: 2}
+    - target: {fileID: 5852202341433255700, guid: c63565143dd0de945aaa97bef7d7a64c, type: 3}
+      propertyPath: <AttackRange>k__BackingField
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852202341433255700, guid: c63565143dd0de945aaa97bef7d7a64c, type: 3}
+      propertyPath: <counterSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 1256496516}
     - target: {fileID: 8186442154933779437, guid: c63565143dd0de945aaa97bef7d7a64c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.76

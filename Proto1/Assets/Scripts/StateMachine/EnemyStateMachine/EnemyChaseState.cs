@@ -10,7 +10,8 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Enter()
     {
-        
+        stateMachine.counterSystem.Play();
+        stateMachine.IsInParryableWindow = true;
     }
 
     public override void Tick(float deltaTime)
@@ -23,7 +24,7 @@ public class EnemyChaseState : EnemyBaseState
             // ------------------------------------
             // Moverse hacia el jugador
             Vector3 direction = (GameManager.Instance.GetPlayer().position - stateMachine.transform.position).normalized;
-            stateMachine.Controller.Move(direction * stateMachine.MovementSpeed * 2 * deltaTime);
+            stateMachine.Controller.Move(direction * stateMachine.MovementAttackSpeed * 4 * deltaTime);
         }
         else if (distance < stateMachine.AttackRange)
         {
@@ -40,7 +41,8 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Exit()
     {
-        
+        stateMachine.counterSystem.Stop();
+        stateMachine.IsInParryableWindow = false;
     }
 
 

@@ -15,6 +15,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action TargetEvent;
+    public event Action ParryEvent;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
         controls.Player.Enable();
     }
+
 
     void OnDestroy()
     {
@@ -63,9 +65,9 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
     }
      */
 
-    public void OnStun(InputAction.CallbackContext context)
+    public void OnParry(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
+        if (!context.performed) { ParryEvent?.Invoke(); }
         
     }
 
