@@ -371,6 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2362959811214021092}
   - component: {fileID: 7155518758679169373}
+  - component: {fileID: 972518373831430792}
   m_Layer: 5
   m_Name: Life
   m_TagString: Untagged
@@ -450,6 +451,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &972518373831430792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996439863215619294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bf05bbf0aa7ac4ea294874575ed178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthSlider: {fileID: 0}
+  healthStep: 10
 --- !u!1 &8503463618438170854
 GameObject:
   m_ObjectHideFlags: 0

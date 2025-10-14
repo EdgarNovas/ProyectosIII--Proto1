@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
+    private Door doorScript;
+
     [Header("Referencias")]
     public Transform player;            
     public TMP_Text interactText;       
-    public Image rewardImage;           
+    //public Image rewardImage;           
 
     [Header("Configuración")]
     public float distance = 2f;         
@@ -16,11 +18,13 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
+        doorScript = FindObjectOfType<Door>();
+
         if (interactText != null)
             interactText.enabled = false; 
 
-        if (rewardImage != null)
-            rewardImage.enabled = false;  
+       // if (rewardImage != null)
+         //   rewardImage.enabled = false;  
     }
 
     void Update()
@@ -53,9 +57,6 @@ public class Chest : MonoBehaviour
         if (interactText != null)
             interactText.enabled = false;
 
-        if (rewardImage != null)
-            rewardImage.enabled = true;
-
-        Debug.Log("Cofre abierto: se muestra la imagen de recompensa.");
+        doorScript.AddKey();
     }
 }
