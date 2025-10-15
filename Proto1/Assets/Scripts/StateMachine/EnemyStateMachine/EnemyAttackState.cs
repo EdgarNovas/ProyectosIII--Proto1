@@ -16,11 +16,11 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Enemy Attack State");
+       
         attackCompleted = false;
         hasAttacked = false;
         timer = windupDuration;
-        stateMachine.IsInParryableWindow = true; // Asegurarse de que empieza en false
+        stateMachine.IsInParryableWindow = false; // Asegurarse de que empieza en false
         //stateMachine.Animator.CrossFadeInFixedTime("Run", 0.1f);
 
 
@@ -41,13 +41,14 @@ public class EnemyAttackState : EnemyBaseState
         {
             // La preparación (windup) ha terminado, empieza la ventana de parry
             stateMachine.IsInParryableWindow = true;
+            EnemyManager.Instance.ReportParryableStatus(true);
             timer = parryableDuration;
         }
         else if (stateMachine.IsInParryableWindow && timer <= 0)
         {
             // La ventana de parry ha terminado, el ataque se completa
             attackCompleted = true;
-            stateMachine.IsInParryableWindow = false;
+            
             // Después del ataque, nos retiramos
             stateMachine.SwitchState(typeof(EnemyRetreatState));
         }
@@ -57,6 +58,9 @@ public class EnemyAttackState : EnemyBaseState
     public override void Exit()
     {
         stateMachine.IsInParryableWindow = false;
+
+        EnemyManager.Instance.ReportParryableStatus(false);
+
     }
 
    

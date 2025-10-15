@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a431ebe5f905e464cbede10cf3dac78f
+guid: 60e84c15fc1d29645a22e1cf91ab1396
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Impact
+      name: Parry
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 5.2
-      lastFrame: 35
+      firstFrame: 0
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

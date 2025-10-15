@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a431ebe5f905e464cbede10cf3dac78f
+guid: 610167bbc81b04845866dfbc18202525
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Impact
+      name: Puch Fly
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 5.2
-      lastFrame: 35
+      firstFrame: 14
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -11,10 +11,10 @@ public class PlayerParryState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Parry Entered");
+        
         parryWindowDuration = 0.5f;
         parrySuccessful = false;
-        //stateMachine.Animator.CrossFadeInFixedTime("Parry", 0.1f);
+        stateMachine.Animator.CrossFadeInFixedTime("Parry", 0.1f);
     }
 
     public override void Tick(float deltaTime)
@@ -27,11 +27,11 @@ public class PlayerParryState : PlayerBaseState
         if (parryTarget != null)
         {
             FaceTargetInstant(parryTarget);
-            Debug.Log("Success parry");
             OnParrySuccess(parryTarget);
             parrySuccessful = true;
             stateMachine.ParryParticle.Play();
             // Opcional: podrías quedarte en el estado un poco más para que la animación termine
+            
         }
 
         parryWindowDuration -= deltaTime;

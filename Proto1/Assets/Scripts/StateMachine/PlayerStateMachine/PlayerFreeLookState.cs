@@ -34,7 +34,9 @@ public class PlayerFreeLookState : PlayerBaseState
 
         stateMachine.InputReader.DodgeEvent += OnDodge;
 
-        //stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0);
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0);
+
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
         /*
         if (shouldFade)
         {

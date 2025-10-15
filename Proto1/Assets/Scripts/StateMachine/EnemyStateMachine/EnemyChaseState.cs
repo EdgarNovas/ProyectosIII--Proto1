@@ -15,6 +15,7 @@ public class EnemyChaseState : EnemyBaseState
         stateMachine.counterSystem.Play();
         stateMachine.IsInParryableWindow = true;
         currentWindUpTime = windUpTime;
+        EnemyManager.Instance.ReportParryableStatus(true);
     }
 
     public override void Tick(float deltaTime)
@@ -51,6 +52,7 @@ public class EnemyChaseState : EnemyBaseState
     {
         stateMachine.counterSystem.Stop();
         stateMachine.IsInParryableWindow = false;
+        EnemyManager.Instance.ReportParryableStatus(false);
     }
 
 

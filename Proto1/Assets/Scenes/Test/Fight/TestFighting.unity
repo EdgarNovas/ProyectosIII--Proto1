@@ -8410,7 +8410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1906390038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8893,6 +8893,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3070863499145367525, guid: 39b4ea3c468e0774997a432c68516796, type: 3}
+      propertyPath: parryIndicator
+      value: 
+      objectReference: {fileID: 1906390037}
     - target: {fileID: 3070863499145367525, guid: 39b4ea3c468e0774997a432c68516796, type: 3}
       propertyPath: <ParryParticle>k__BackingField
       value: 

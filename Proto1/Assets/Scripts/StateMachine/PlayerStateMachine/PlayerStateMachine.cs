@@ -37,13 +37,15 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public ParticleSystem ParryParticle { get; private set; }
 
-   // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
+    [field: SerializeField] private GameObject parryIndicator; 
 
-  //  [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
 
-  //  [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
+    //  [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
 
-  //  [field: SerializeField] public Attack[] Attacks { get; private set; }
+    //  [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
+
+    //  [field: SerializeField] public Attack[] Attacks { get; private set; }
 
 
 
@@ -124,6 +126,8 @@ public class PlayerStateMachine : StateMachine
         // Health.OnTakeDamage += HandleTakeDamage;
         // Health.OnDie += HandleDie;
         InputReader.ParryEvent += HandleParry;
+        EnemyManager.Instance.OnFirstParryWindowOpened += ShowParryIndicator;
+        EnemyManager.Instance.OnLastParryWindowClosed += HideParryIndicator;
     }
 
     private void OnDisable()
@@ -131,6 +135,9 @@ public class PlayerStateMachine : StateMachine
         //  Health.OnTakeDamage -= HandleTakeDamage;
         // Health.OnDie -= HandleDie;
         InputReader.ParryEvent -= HandleParry;
+
+        EnemyManager.Instance.OnFirstParryWindowOpened -= ShowParryIndicator;
+        EnemyManager.Instance.OnLastParryWindowClosed -= HideParryIndicator;
     }
 
     void HandleTakeDamage()
@@ -157,6 +164,23 @@ public class PlayerStateMachine : StateMachine
         Time.timeScale = 0.1f; // Ralentiza el tiempo drásticamente.
         yield return new WaitForSecondsRealtime(duration); // Espera usando tiempo real.
         Time.timeScale = 1.0f; // Restaura el tiempo a la normalidad.
+    }
+
+    private void ShowParryIndicator()
+    {
+        if (parryIndicator != null)
+        {
+            Debug.Log("EnseñadoParry");
+            parryIndicator.SetActive(true);
+        }
+    }
+
+    private void HideParryIndicator()
+    {
+        if (parryIndicator != null)
+        {
+            parryIndicator.SetActive(false);
+        }
     }
 
 }

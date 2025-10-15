@@ -48,7 +48,7 @@ public class EnemyStateMachine : StateMachine
     // Método para que el jugador le haga daño
     public void TakeDamage(int damage, Vector3 knockBack)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        
 
         Health -= damage;
 
@@ -63,13 +63,14 @@ public class EnemyStateMachine : StateMachine
         else
         {
             EnemyManager.Instance.RemoveEnemy(this);
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        
 
         Health -= damage;
 
@@ -81,6 +82,7 @@ public class EnemyStateMachine : StateMachine
         }
         else
         {
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
         }
     }
