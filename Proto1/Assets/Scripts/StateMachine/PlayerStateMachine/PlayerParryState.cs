@@ -30,6 +30,7 @@ public class PlayerParryState : PlayerBaseState
             Debug.Log("Success parry");
             OnParrySuccess(parryTarget);
             parrySuccessful = true;
+            stateMachine.ParryParticle.Play();
             // Opcional: podrías quedarte en el estado un poco más para que la animación termine
         }
 

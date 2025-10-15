@@ -20,7 +20,7 @@ public class EnemyAttackState : EnemyBaseState
         attackCompleted = false;
         hasAttacked = false;
         timer = windupDuration;
-        stateMachine.IsInParryableWindow = false; // Asegurarse de que empieza en false
+        stateMachine.IsInParryableWindow = true; // Asegurarse de que empieza en false
         //stateMachine.Animator.CrossFadeInFixedTime("Run", 0.1f);
 
 

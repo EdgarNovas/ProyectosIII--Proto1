@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyChaseState : EnemyBaseState
 {
     //private readonly int RunHash = Animator.StringToHash("Run");
+    float currentWindUpTime = 0f;
+    float windUpTime = 0.5f;
 
     public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -12,11 +14,17 @@ public class EnemyChaseState : EnemyBaseState
     {
         stateMachine.counterSystem.Play();
         stateMachine.IsInParryableWindow = true;
+        currentWindUpTime = windUpTime;
     }
 
     public override void Tick(float deltaTime)
     {
         FacePlayer();
+
+
+        currentWindUpTime -= deltaTime;
+        if (currentWindUpTime > 0f) { return; }
+
         float distance = Vector3.Distance(stateMachine.transform.position, GameManager.Instance.GetPlayer().position);
 
         if (distance > stateMachine.AttackRange)

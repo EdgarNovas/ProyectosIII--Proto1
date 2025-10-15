@@ -35,6 +35,8 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float JumpForce { get; private set; }
 
+    [field: SerializeField] public ParticleSystem ParryParticle { get; private set; }
+
    // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
 
   //  [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
