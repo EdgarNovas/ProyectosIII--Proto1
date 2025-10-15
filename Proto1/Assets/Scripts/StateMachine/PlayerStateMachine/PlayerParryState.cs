@@ -29,7 +29,7 @@ public class PlayerParryState : PlayerBaseState
             FaceTargetInstant(parryTarget);
             OnParrySuccess(parryTarget);
             parrySuccessful = true;
-            stateMachine.ParryParticle.Play();
+            
             // Opcional: podrías quedarte en el estado un poco más para que la animación termine
             
         }
@@ -58,20 +58,15 @@ public class PlayerParryState : PlayerBaseState
         enemy.TakeDamage(0, knockBack*2);
         enemy.SwitchState(typeof(EnemyHitState));
 
-        // EL FEEDBACK
+        //FEEDBACK
 
         // a) Sonido: El más importante. Un "CLANG!" metálico y satisfactorio.
         // AudioManager.Instance.Play("ParrySuccessSound"); // (Si tienes un AudioManager)
 
         // b) Partículas: Un destello visual en el punto de impacto.
-        /*
-        if (parryEffectPrefab != null)
-        {
-            // Instancia el efecto a medio camino entre el jugador y el enemigo.
-            Vector3 impactPoint = Vector3.Lerp(transform.position, enemy.transform.position, 0.5f);
-            Instantiate(parryEffectPrefab, impactPoint, Quaternion.identity);
-        }
-        */
+
+        stateMachine.ParryParticle.Play();
+      
 
         // c) Hit Stop / Slow Motion: El truco secreto para que el impacto se sienta pesado.
         stateMachine.StartHitStopParryEffect(0.1f); // Congelamos el tiempo por 0.1 segundos.
@@ -81,6 +76,7 @@ public class PlayerParryState : PlayerBaseState
         // Cambiamos inmediatamente al estado de locomoción para que el jugador
         // pueda moverse y contraatacar al enemigo aturdido sin demora.
         stateMachine.SwitchState(typeof(PlayerFreeLookState));
+        return;
     }
 
    

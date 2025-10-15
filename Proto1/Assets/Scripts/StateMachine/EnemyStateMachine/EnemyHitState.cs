@@ -20,7 +20,7 @@ public class EnemyHitState : EnemyBaseState
     {
         Debug.Log("Entered hitstate");
         currentTimeStun = 0f;
-        stateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
+        //stateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
         
     }
 
