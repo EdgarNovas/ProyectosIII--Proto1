@@ -73,7 +73,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaveIntensity: 0.12
-    - _WaveSpeed: 0.5
+    - _WaveSpeed: 7.45
     m_Colors:
     - _CausticColor: {r: 1, g: 1, b: 1, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}

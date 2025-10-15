@@ -29,10 +29,10 @@ public class EnemyAttackState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
 
-        if (attackCompleted) { return; }
+        
 
         FacePlayer();
-
+        
         
         timer -= deltaTime; 
                             

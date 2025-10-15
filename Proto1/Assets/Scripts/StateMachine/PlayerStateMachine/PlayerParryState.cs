@@ -4,6 +4,7 @@ public class PlayerParryState : PlayerBaseState
 {
     private float parryWindowDuration = 0.5f; // La duración que pediste
     private bool parrySuccessful = false;
+    private float parryRange = 1.5f;
     public PlayerParryState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -18,15 +19,14 @@ public class PlayerParryState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        // Si ya tuvimos éxito, no hacemos nada más
         if (parrySuccessful) { return; }
 
         // Comprobar si hay un enemigo "parreable"
-        EnemyStateMachine parryTarget = EnemyManager.Instance.GetParryableEnemy(stateMachine.transform, 60f); // Ángulo de parry de 60°
+        EnemyStateMachine parryTarget = EnemyManager.Instance.GetParryableEnemy(stateMachine.transform, 360f,parryRange); // Ángulo de parry de 360°
 
         if (parryTarget != null)
         {
-            // ¡Parry Exitoso!
+            FaceTargetInstant(parryTarget);
             Debug.Log("Success parry");
             OnParrySuccess(parryTarget);
             parrySuccessful = true;

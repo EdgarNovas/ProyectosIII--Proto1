@@ -99,7 +99,7 @@ public class EnemyManager : MonoBehaviour
     /// <param name="playerTransform">La posición y rotación del jugador.</param>
     /// <param name="parryAngle">El ángulo (en grados) del cono frontal del jugador para el parry.</param>
     /// <returns>El primer enemigo que cumpla las condiciones, o null si no hay ninguno.</returns>
-    public EnemyStateMachine GetParryableEnemy(Transform playerTransform, float parryAngle)
+    public EnemyStateMachine GetParryableEnemy(Transform playerTransform, float parryAngle,float maxDistance)
     {
         // Recorremos todos los enemigos activos en la escena.
         foreach (EnemyStateMachine enemy in enemies)
@@ -109,6 +109,12 @@ public class EnemyManager : MonoBehaviour
             if (!enemy.IsInParryableWindow)
             {
                 continue; // Si no es parreable, pasamos al siguiente enemigo de la lista.
+            }
+
+            float distanceToPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
+            if (distanceToPlayer > maxDistance)
+            {
+                continue; // Si está demasiado lejos, lo ignoramos y pasamos al siguiente.
             }
 
             // 2. Segunda condición: ¿Está el jugador mirando hacia el enemigo?
