@@ -2,14 +2,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI; 
 
+
 public class Chest : MonoBehaviour
 {
     private Door doorScript;
 
     [Header("Referencias")]
     public Transform player;            
-    public TMP_Text interactText;       
-    //public Image rewardImage;           
+    public TMP_Text interactText;
+    public InputHandler Input;  
 
     [Header("Configuración")]
     public float distance = 2f;         
@@ -18,19 +19,14 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
-        doorScript = FindObjectOfType<Door>();
+       doorScript = FindObjectOfType<Door>();
 
         if (interactText != null)
             interactText.enabled = false; 
-
-       // if (rewardImage != null)
-         //   rewardImage.enabled = false;  
     }
 
-    void Update()
+    private void Update()
     {
-        if (player == null) return;
-
         float dist = Vector3.Distance(transform.position, player.position);
 
         if (!open && dist <= distance)
@@ -38,10 +34,6 @@ public class Chest : MonoBehaviour
             if (interactText != null)
                 interactText.enabled = true;
 
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                OpenChest();
-            }
         }
         else
         {
@@ -50,13 +42,32 @@ public class Chest : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Input.InteractionEvent += OpenChest;
+    }
+
+    private void OnDisable()
+    {
+        Input.InteractionEvent -= OpenChest;
+    }
+
     void OpenChest()
     {
-        open = true;
+        if (player == null) return;
 
-        if (interactText != null)
-            interactText.enabled = false;
+        float dist = Vector3.Distance(transform.position, player.position);
 
-        doorScript.AddKey();
+        if (!open && dist <= distance)
+        {
+            open = true;
+
+            if (interactText != null)
+                interactText.enabled = false;
+
+            doorScript.AddKey();
+
+        }
+
     }
 }
