@@ -45,7 +45,7 @@ public class ForceReceiver : MonoBehaviour
 
         }
 
-        controller.Move(Movement);
+        controller.Move(Movement * Time.deltaTime);
     }
 
     public void AddForce(Vector3 force)

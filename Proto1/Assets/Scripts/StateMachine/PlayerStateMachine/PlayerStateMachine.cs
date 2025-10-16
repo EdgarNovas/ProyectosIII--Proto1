@@ -170,7 +170,7 @@ public class PlayerStateMachine : StateMachine
     {
         if (parryIndicator != null)
         {
-            Debug.Log("EnseñadoParry");
+            
             parryIndicator.SetActive(true);
         }
     }
@@ -181,6 +181,26 @@ public class PlayerStateMachine : StateMachine
         {
             parryIndicator.SetActive(false);
         }
+    }
+
+   
+    public void TakeDamage(int damage, Vector3 knockback)
+    {
+        Debug.Log("took no damage");
+        // Prevenimos ser golpeados si ya estamos muertos, aturdidos o haciendo parry
+        if (currentState is PlayerHitState || currentState is PlayerParryState) //current deadstate
+        {
+            return;
+        }
+        Debug.Log("tookDamage");
+        // Lógica para reducir la vida (si tienes un sistema de salud)
+        // Health.DealDamage(damage);
+
+        // 1. Aplicamos la fuerza del knockback al ForceReceiver
+        ForceReceiver.AddForce(knockback);
+
+        // 2. Forzamos el cambio de estado a la reacción de golpe
+        SwitchState(typeof(PlayerHitState));
     }
 
 }

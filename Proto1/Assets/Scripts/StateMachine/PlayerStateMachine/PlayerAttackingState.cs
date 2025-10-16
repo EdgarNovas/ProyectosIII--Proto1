@@ -57,14 +57,18 @@ public class PlayerAttackingState : PlayerBaseState
         }
         else if (distance < attackTriggerDistance && !hasAttacked)
         {
-            int attackNum = Random.Range(0, 2);
+            int attackNum = Random.Range(0, 3);
             if(attackNum == 0)
             {
                 stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
             }
-            else
+            else if(attackNum == 1)
             {
                 stateMachine.Animator.CrossFadeInFixedTime("Punch", 0.1f);
+            }
+            else
+            {
+                stateMachine.Animator.CrossFadeInFixedTime("360Slash", 0.1f);
             }
 
             hasAttacked = true;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38c525ff6688ef84f9a6063c7cf28c0c
+guid: bfdc927af625ad94f9f624be67347a4d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BodyBlow
+      name: 360 Slash
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 14
-      lastFrame: 70
+      firstFrame: 5
+      lastFrame: 73
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

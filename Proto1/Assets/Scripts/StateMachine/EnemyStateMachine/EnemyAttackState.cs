@@ -20,8 +20,8 @@ public class EnemyAttackState : EnemyBaseState
         attackCompleted = false;
         hasAttacked = false;
         timer = windupDuration;
-        stateMachine.IsInParryableWindow = true; // Asegurarse de que empieza en false
-        EnemyManager.Instance.ReportParryableStatus(true);
+        stateMachine.IsInParryableWindow = false; // Asegurarse de que empieza en false
+        EnemyManager.Instance.ReportParryableStatus(false);
         //stateMachine.Animator.CrossFadeInFixedTime("Run", 0.1f);
 
 
@@ -29,9 +29,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-
-        
-
+        Debug.Log("Attacked");
         FacePlayer();
         
         
@@ -43,6 +41,7 @@ public class EnemyAttackState : EnemyBaseState
             // La preparación (windup) ha terminado, empieza la ventana de parry
             stateMachine.IsInParryableWindow = true;
             EnemyManager.Instance.ReportParryableStatus(true);
+            TryToHitPlayer();
             timer = parryableDuration;
         }
         else if (stateMachine.IsInParryableWindow && timer <= 0)
@@ -64,5 +63,28 @@ public class EnemyAttackState : EnemyBaseState
 
     }
 
-   
+
+    private void TryToHitPlayer()
+    {
+        // Primero, comprobamos si el jugador está en nuestro rango de ataque
+        float distanceToPlayer = Vector3.Distance(stateMachine.transform.position, GameManager.Instance.GetPlayer().position);
+        if (distanceToPlayer > stateMachine.AttackRange)
+        {
+            // El jugador esquivó o se alejó, el golpe falla.
+            return;
+        }
+
+        // Si está en rango, le aplicamos el daño y el knockback.
+        if (GameManager.Instance.GetPlayer().TryGetComponent<PlayerStateMachine>(out PlayerStateMachine player))
+        {
+            // 1. Calculamos la dirección del empujón (del enemigo hacia el jugador)
+            Vector3 knockbackDirection = (player.transform.position - stateMachine.transform.position).normalized;
+            float knockbackStrength = 5f; // ¡Ajusta esta fuerza!
+
+            // 2. Llamamos al método público del jugador
+            player.TakeDamage(10, knockbackDirection * knockbackStrength);
+            return;
+        }
+    }
+
 }
