@@ -17,11 +17,21 @@ public class Door : MonoBehaviour
 
     [Header("Puerta")]
     public bool open = false;
-    public BoxCollider colliderDoor;
-    public GameObject door;
+    public GameObject bolt;
+    public GameObject doorL;
+    public GameObject doorR;
 
     private int lastEnemysKilled;
     private int lastKeys;
+
+    [Header("Animación de apertura")]
+    public float openAngle = 90f;
+    public float openSpeed = 2f;
+    private Quaternion doorLClosedRot;
+    private Quaternion doorLOpenRot;
+    private Quaternion doorRClosedRot;
+    private Quaternion doorROpenRot;
+    private bool isOpening = false;
 
     void Start()
     {
@@ -29,6 +39,9 @@ public class Door : MonoBehaviour
         lastKeys = keys;
 
         UpdateUIText();
+
+        if (doorL != null) doorLClosedRot = doorL.transform.localRotation;
+        if (doorR != null) doorRClosedRot = doorR.transform.localRotation;
     }
 
     void Update()
@@ -49,6 +62,15 @@ public class Door : MonoBehaviour
         {
             OpenDoor();
         }
+
+        if (isOpening)
+        {
+            if (doorL != null)
+                doorL.transform.localRotation = Quaternion.Slerp(doorL.transform.localRotation, doorLOpenRot, Time.deltaTime * openSpeed);
+
+            if (doorR != null)
+                doorR.transform.localRotation = Quaternion.Slerp(doorR.transform.localRotation, doorROpenRot, Time.deltaTime * openSpeed);
+        }
     }
 
     void ChangeTextEnemy()
@@ -67,11 +89,15 @@ public class Door : MonoBehaviour
     {
         open = true;
 
-        if (colliderDoor != null)
-            Destroy(colliderDoor);
+        if (bolt != null)
+            Destroy(bolt);
 
-        if (door != null)
-            Destroy(door);
+        if (doorL != null && doorR != null)
+        {
+            doorLOpenRot = Quaternion.Euler(0, -openAngle, 0) * doorLClosedRot;
+            doorROpenRot = Quaternion.Euler(0, openAngle, 0) * doorRClosedRot;
+            isOpening = true;
+        }
 
         Debug.Log("¡Puerta abierta!");
     }

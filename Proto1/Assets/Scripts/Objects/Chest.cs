@@ -10,19 +10,30 @@ public class Chest : MonoBehaviour
     [Header("Referencias")]
     public Transform player;            
     public TMP_Text interactText;
-    public InputHandler Input;  
+    public InputHandler Input;
+    public GameObject chestUP;
 
     [Header("Configuración")]
-    public float distance = 2f;         
+    public float distance = 2f;
 
-    private bool open = false;          
+    [Header("Animación de apertura")]
+    public float openAngle = 90f;
+    public float openSpeed = 2f;
+    private Quaternion chestClosedRot;
+    private Quaternion chestOpenRot;
+    private bool isOpening = false;
 
+    private bool open = false;    
+    
     void Start()
     {
        doorScript = FindObjectOfType<Door>();
 
         if (interactText != null)
-            interactText.enabled = false; 
+            interactText.enabled = false;
+
+        if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
+        if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
     }
 
     private void Update()
@@ -40,8 +51,13 @@ public class Chest : MonoBehaviour
             if (interactText != null)
                 interactText.enabled = false;
         }
-    }
 
+        if (isOpening)
+        {
+            if (chestUP != null)
+                chestUP.transform.localRotation = Quaternion.Slerp(chestUP.transform.localRotation, chestOpenRot, Time.deltaTime * openSpeed);
+        }
+    }
     private void OnEnable()
     {
         Input.InteractionEvent += OpenChest;
@@ -67,6 +83,11 @@ public class Chest : MonoBehaviour
 
             doorScript.AddKey();
 
+            if (chestUP != null && chestUP != null)
+            {
+                chestOpenRot = Quaternion.Euler(-openAngle, 0, 0) * chestClosedRot;
+                isOpening = true;
+            }
         }
 
     }

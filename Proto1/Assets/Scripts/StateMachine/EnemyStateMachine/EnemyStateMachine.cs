@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 public class EnemyStateMachine : StateMachine
 {
+    //Codigo para UI
+    private Door doorScript;
+
     // Referencias a componentes y al jugador
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
@@ -42,6 +45,12 @@ public class EnemyStateMachine : StateMachine
         EnemyManager.Instance.AddEnemy(this);
         // El estado inicial del enemigo será Idle
         SwitchState(typeof(EnemyIdleState));
+
+        //Codigo para UI
+        doorScript = FindObjectOfType<Door>();
+
+        if (doorScript == null)
+            Debug.LogWarning("No se encontró ningún objeto con el script Door en la escena.");
     }
 
     // Método para que el jugador le haga daño
@@ -62,13 +71,18 @@ public class EnemyStateMachine : StateMachine
         else
         {
             EnemyManager.Instance.RemoveEnemy(this);
+
+            //Codigo para UI
+            doorScript.AddEnemyKilled();
+            Debug.Log("Enemigo Muerto");
+
             //SwitchState(typeof(EnemyDeadState));
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        if (Health <= 0) {return;} // Ya está muerto
 
         Health -= damage;
 
@@ -81,6 +95,10 @@ public class EnemyStateMachine : StateMachine
         else
         {
             //SwitchState(typeof(EnemyDeadState));
+
+            //Codigo para UI
+            doorScript.AddEnemyKilled();
+            Debug.Log("Enemigo Muerto");
         }
     }
 

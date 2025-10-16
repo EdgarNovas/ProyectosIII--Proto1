@@ -22,19 +22,16 @@ public class LifeUI : MonoBehaviour
 
     private void Update()
     {
-        // Aumentar vida si se pulsa +
         if (Input.GetKeyDown(KeyCode.Equals) && Input.GetKey(KeyCode.LeftShift))
         {
             IncreaseHealth();
         }
 
-        // Alternativa para teclados numéricos
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
             IncreaseHealth();
         }
 
-        // Disminuir vida si se pulsa -
         if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             DecreaseHealth();
