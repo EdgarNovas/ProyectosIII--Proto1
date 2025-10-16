@@ -3,58 +3,47 @@ using UnityEngine.UI;
 
 public class LifeUI : MonoBehaviour
 {
-    [Header("Configuración de Vida")]
-    public float maxHealth = 100f;
-    private float currentHealth;
-
-    [Header("Referencias UI")]
+    [Header("Referencias")]
     public Slider healthSlider;
 
-    [Header("Configuración")]
-    public float healthStep = 10f; 
+    private Health healthComponent;
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
-    }
+        GameObject playerObject = GameObject.FindWithTag("Player");
 
-    private void Update()
-    {
-        // Aumentar vida si se pulsa +
-        if (Input.GetKeyDown(KeyCode.Equals) && Input.GetKey(KeyCode.LeftShift))
+        if (playerObject == null)
         {
-            IncreaseHealth();
+            Debug.LogError("No se encontró ningún GameObject con la etiqueta 'Player'. Asegúrate de que tu Player tenga esa etiqueta asignada.", this);
+            return;
         }
 
-        // Alternativa para teclados numéricos
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        healthComponent = playerObject.GetComponent<Health>();
+
+        if (healthComponent == null)
         {
-            IncreaseHealth();
+            Debug.LogError("El GameObject etiquetado como 'Player' no tiene el componente Health.", this);
+            return;
         }
 
-        // Disminuir vida si se pulsa -
-        if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
+        healthSlider.maxValue = healthComponent.MaxHealth;
+        healthSlider.value = healthComponent.GetHealth();
+
+        healthComponent.OnHealthChanged += UpdateHealthBar;
+
+        Debug.Log("LifeUI conectado exitosamente al componente Health del Player.");
+    }
+
+    private void OnDestroy()
+    {
+        if (healthComponent != null)
         {
-            DecreaseHealth();
+            healthComponent.OnHealthChanged -= UpdateHealthBar;
         }
-    }
-
-    private void IncreaseHealth()
-    {
-        currentHealth = Mathf.Min(currentHealth + healthStep, maxHealth);
-        UpdateHealthBar();
-    }
-
-    private void DecreaseHealth()
-    {
-        currentHealth = Mathf.Max(currentHealth - healthStep, 0);
-        UpdateHealthBar();
     }
 
     private void UpdateHealthBar()
     {
-        healthSlider.value = currentHealth;
+        healthSlider.value = healthComponent.GetHealth();
     }
 }

@@ -2,31 +2,42 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI; 
 
+
 public class Chest : MonoBehaviour
 {
+    private Door doorScript;
+
     [Header("Referencias")]
     public Transform player;            
-    public TMP_Text interactText;       
-    public Image rewardImage;           
+    public TMP_Text interactText;
+    public InputHandler Input;
+    public GameObject chestUP;
 
     [Header("Configuración")]
-    public float distance = 2f;         
+    public float distance = 2f;
 
-    private bool open = false;          
+    [Header("Animación de apertura")]
+    public float openAngle = 90f;
+    public float openSpeed = 2f;
+    private Quaternion chestClosedRot;
+    private Quaternion chestOpenRot;
+    private bool isOpening = false;
 
+    private bool open = false;    
+    
     void Start()
     {
-        if (interactText != null)
-            interactText.enabled = false; 
+       doorScript = FindObjectOfType<Door>();
 
-        if (rewardImage != null)
-            rewardImage.enabled = false;  
+        if (interactText != null)
+            interactText.enabled = false;
+
+        if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
+        if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
     }
 
-    void Update()
+    private void Update()
     {
-        if (player == null) return;
-
         float dist = Vector3.Distance(transform.position, player.position);
 
         if (!open && dist <= distance)
@@ -34,28 +45,50 @@ public class Chest : MonoBehaviour
             if (interactText != null)
                 interactText.enabled = true;
 
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                OpenChest();
-            }
         }
         else
         {
             if (interactText != null)
                 interactText.enabled = false;
         }
+
+        if (isOpening)
+        {
+            if (chestUP != null)
+                chestUP.transform.localRotation = Quaternion.Slerp(chestUP.transform.localRotation, chestOpenRot, Time.deltaTime * openSpeed);
+        }
+    }
+    private void OnEnable()
+    {
+        Input.InteractionEvent += OpenChest;
+    }
+
+    private void OnDisable()
+    {
+        Input.InteractionEvent -= OpenChest;
     }
 
     void OpenChest()
     {
-        open = true;
+        if (player == null) return;
 
-        if (interactText != null)
-            interactText.enabled = false;
+        float dist = Vector3.Distance(transform.position, player.position);
 
-        if (rewardImage != null)
-            rewardImage.enabled = true;
+        if (!open && dist <= distance)
+        {
+            open = true;
 
-        Debug.Log("Cofre abierto: se muestra la imagen de recompensa.");
+            if (interactText != null)
+                interactText.enabled = false;
+
+            doorScript.AddKey();
+
+            if (chestUP != null && chestUP != null)
+            {
+                chestOpenRot = Quaternion.Euler(-openAngle, 0, 0) * chestClosedRot;
+                isOpening = true;
+            }
+        }
+
     }
 }
