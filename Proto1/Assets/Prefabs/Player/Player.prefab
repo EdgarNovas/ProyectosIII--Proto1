@@ -5233,6 +5233,7 @@ GameObject:
   - component: {fileID: 5601937191422085677}
   - component: {fileID: 3070863499145367525}
   - component: {fileID: 2983439868171123683}
+  - component: {fileID: 1864893124149966934}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Untagged
@@ -5336,6 +5337,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 7752465898193232333}
   <ForceReceiver>k__BackingField: {fileID: 2983439868171123683}
   <camera_CM>k__BackingField: {fileID: 5122145609680315417}
+  <Health>k__BackingField: {fileID: 1864893124149966934}
   <FreeLookMovementSpeed>k__BackingField: 12
   <TargetingMovementSpeed>k__BackingField: 21.76
   <RotationDamping>k__BackingField: 7.71
@@ -5361,6 +5363,19 @@ MonoBehaviour:
   agent: {fileID: 0}
   drag: 0.4
   playerGravity: -9.81
+--- !u!114 &1864893124149966934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144002717003813181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d6ef382513d134aa915303467a1821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1001 &4426244441908872892
 PrefabInstance:
   m_ObjectHideFlags: 0

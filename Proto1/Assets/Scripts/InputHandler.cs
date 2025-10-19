@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public event Action DodgeEvent;
     public event Action TargetEvent;
     public event Action ParryEvent;
+    public event Action InteractionEvent;
 
     void Start()
     {
@@ -73,7 +74,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        
+        if (!context.performed) { InteractionEvent?.Invoke(); }
     }
 
     public void OnJump(InputAction.CallbackContext context)
