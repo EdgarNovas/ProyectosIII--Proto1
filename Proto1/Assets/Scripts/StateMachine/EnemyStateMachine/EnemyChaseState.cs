@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyChaseState : EnemyBaseState
 {
     //private readonly int RunHash = Animator.StringToHash("Run");
+    float currentWindUpTime = 0f;
+    float windUpTime = 0.5f;
 
     public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -10,12 +12,20 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Enter()
     {
-        
+        stateMachine.counterSystem.Play();
+        stateMachine.IsInParryableWindow = true;
+        currentWindUpTime = windUpTime;
+        EnemyManager.Instance.ReportParryableStatus(true);
     }
 
     public override void Tick(float deltaTime)
     {
         FacePlayer();
+
+
+        currentWindUpTime -= deltaTime;
+        if (currentWindUpTime > 0f) { return; }
+
         float distance = Vector3.Distance(stateMachine.transform.position, GameManager.Instance.GetPlayer().position);
 
         if (distance > stateMachine.AttackRange)
@@ -23,7 +33,7 @@ public class EnemyChaseState : EnemyBaseState
             // ------------------------------------
             // Moverse hacia el jugador
             Vector3 direction = (GameManager.Instance.GetPlayer().position - stateMachine.transform.position).normalized;
-            stateMachine.Controller.Move(direction * stateMachine.MovementSpeed * 2 * deltaTime);
+            stateMachine.Controller.Move(direction * stateMachine.MovementAttackSpeed * 4 * deltaTime);
         }
         else if (distance < stateMachine.AttackRange)
         {
@@ -40,7 +50,9 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Exit()
     {
-        
+        stateMachine.counterSystem.Stop();
+        stateMachine.IsInParryableWindow = false;
+        EnemyManager.Instance.ReportParryableStatus(false);
     }
 
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,44 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance { get; private set; }
     // Ahora guardamos referencias a los StateMachines
     private List<EnemyStateMachine> enemies = new List<EnemyStateMachine>();
+
+
+    // Un contador para saber cuántos enemigos son "parreables" AHORA MISMO.
+    private int parryableEnemiesCount = 0;
+
+    // Eventos para notificar al jugador.
+    public event Action OnFirstParryWindowOpened;
+    public event Action OnLastParryWindowClosed;
+
+    /// <summary>
+    /// Los enemigos llaman a este método para informar de su estado de "parry".
+    /// </summary>
+    public void ReportParryableStatus(bool isNowParryable)
+    {
+        if (isNowParryable)
+        {
+            // Un enemigo más ha entrado en la ventana de parry.
+            parryableEnemiesCount++;
+
+            // Si este es el PRIMER enemigo, disparamos el evento para MOSTRAR el indicador.
+            if (parryableEnemiesCount >= 1)
+            {
+                OnFirstParryWindowOpened?.Invoke();
+            }
+        }
+        else
+        {
+            // Un enemigo ha salido de la ventana de parry.
+            parryableEnemiesCount--;
+
+            // Si el contador llega a CERO, significa que ya NO QUEDAN enemigos "parreables".
+            // Disparamos el evento para OCULTAR el indicador.
+            if (parryableEnemiesCount == 0)
+            {
+                OnLastParryWindowClosed?.Invoke();
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -37,7 +76,7 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 3f));
 
             // Elegir un enemigo disponible para atacar
             EnemyStateMachine attackingEnemy = GetAvailableEnemy();
@@ -65,7 +104,7 @@ public class EnemyManager : MonoBehaviour
         if (availableEnemies.Count == 0) return null;
 
         // Elige uno al azar de los disponibles
-        return availableEnemies[Random.Range(0, availableEnemies.Count)];
+        return availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count)];
     }
     
     public void PrepareEnemyForHit(EnemyStateMachine target)
@@ -91,6 +130,49 @@ public class EnemyManager : MonoBehaviour
     public bool IsOnlyEnemy()
     {
         return enemies.Count < 2;
+    }
+
+    /// <summary>
+    /// Busca en la lista de enemigos activos si alguno es un objetivo válido para un parry.
+    /// </summary>
+    /// <param name="playerTransform">La posición y rotación del jugador.</param>
+    /// <param name="parryAngle">El ángulo (en grados) del cono frontal del jugador para el parry.</param>
+    /// <returns>El primer enemigo que cumpla las condiciones, o null si no hay ninguno.</returns>
+    public EnemyStateMachine GetParryableEnemy(Transform playerTransform, float parryAngle,float maxDistance)
+    {
+        // Recorremos todos los enemigos activos en la escena.
+        foreach (EnemyStateMachine enemy in enemies)
+        {
+            // 1. Primera condición: ¿Está el enemigo en su ventana de ataque "parreable"?
+            // Esta bandera la controla el 'EnemyAttackState' del enemigo.
+            if (!enemy.IsInParryableWindow)
+            {
+                continue; // Si no es parreable, pasamos al siguiente enemigo de la lista.
+            }
+
+            float distanceToPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
+            if (distanceToPlayer > maxDistance)
+            {
+                continue; // Si está demasiado lejos, lo ignoramos y pasamos al siguiente.
+            }
+
+            // 2. Segunda condición: ¿Está el jugador mirando hacia el enemigo?
+            // Calculamos el vector que va desde el jugador hacia el enemigo.
+            Vector3 directionToEnemy = (enemy.transform.position - playerTransform.position).normalized;
+
+            // Calculamos el ángulo entre la dirección a la que mira el jugador y la dirección hacia el enemigo.
+            float angle = Vector3.Angle(playerTransform.forward, directionToEnemy);
+
+            // Si el ángulo es menor que el permitido, significa que el jugador está encarado al enemigo.
+            if (angle <= parryAngle)
+            {
+                // ¡Hemos encontrado un objetivo válido! Lo devolvemos inmediatamente.
+                return enemy;
+            }
+        }
+
+        // Si el bucle termina y no hemos encontrado ningún enemigo que cumpla las condiciones, devolvemos null.
+        return null;
     }
 
     /*

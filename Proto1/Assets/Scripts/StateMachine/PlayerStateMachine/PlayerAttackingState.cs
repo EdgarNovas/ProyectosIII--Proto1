@@ -9,8 +9,8 @@ public class PlayerAttackingState : PlayerBaseState
     private EnemyStateMachine target;
     float stopDistance = 1.5f; // tweak this depending on collider sizes
     float stopHitTime = 0.1f;
-    
-
+    private float attackTriggerDistance = 5f;
+    bool hasAttacked = false;
 
     public PlayerAttackingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -28,8 +28,9 @@ public class PlayerAttackingState : PlayerBaseState
             EnemyManager.Instance.PrepareEnemyForHit(target);
             MoveTowardsTarget();
             defaultFOV = stateMachine.camera_CM.Lens.FieldOfView;
-            
-            //stateMachine.Animator.CrossFadeInFixedTime("AttackDash", 0.1f);
+            //stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
+            stateMachine.Animator.CrossFadeInFixedTime("PunchFly", 0.03f);
+
         }
         else
         {
@@ -42,18 +43,42 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if(stateMachine.camera_CM.Lens.FieldOfView < stateMachine.camera_CM.Lens.FieldOfView + 40)
+        if (stateMachine.camera_CM.Lens.FieldOfView < stateMachine.camera_CM.Lens.FieldOfView + 40)
         {
             stateMachine.camera_CM.Lens.FieldOfView += 20 * deltaTime;
         }
-        
+        float distance = Vector3.Distance(stateMachine.transform.position, target.transform.position);
 
+
+
+        if (distance > attackTriggerDistance)
+        {
+            FaceTarget(target.transform);
+        }
+        else if (distance < attackTriggerDistance && !hasAttacked)
+        {
+            int attackNum = Random.Range(0, 3);
+            if(attackNum == 0)
+            {
+                stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
+            }
+            else if(attackNum == 1)
+            {
+                stateMachine.Animator.CrossFadeInFixedTime("Punch", 0.1f);
+            }
+            else
+            {
+                stateMachine.Animator.CrossFadeInFixedTime("360Slash", 0.1f);
+            }
+
+            hasAttacked = true;
+        }
     }
 
     public override void Exit()
     {
         target = null;
-        
+        hasAttacked = false;
     }
 
     private bool FindTarget()
@@ -63,7 +88,7 @@ public class PlayerAttackingState : PlayerBaseState
         RaycastHit hit;
         
 
-        if (Physics.SphereCast(stateMachine.transform.position, 3f, CalculateMovement(), out hit, 50f))
+        if (Physics.SphereCast(stateMachine.transform.position, 3f, CalculateMovement(), out hit, 10f))
         {
             if (hit.collider.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemy) && enemy.IsAttackable())
             {
@@ -85,6 +110,7 @@ public class PlayerAttackingState : PlayerBaseState
             .SetEase(Ease.Flash)
             .OnComplete(() =>
             {
+                
                 stateMachine.camera_CM.Lens.FieldOfView = defaultFOV;
                 Vector3 knockback = (target.transform.position - GameManager.Instance.GetPlayer().position).normalized;
                 stateMachine.StartHitStop(stopHitTime);

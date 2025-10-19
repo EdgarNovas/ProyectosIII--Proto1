@@ -7,6 +7,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; } = 3f;
+    [field: SerializeField] public float MovementAttackSpeed { get; private set; } = 20f;
     [field: SerializeField] public float RotationSpeed { get; private set; } = 3f;
     [field: SerializeField] public float AttackRange { get; private set; } = 2f;
     [field: SerializeField] public float DetectionRange { get; private set; } = 6f;
@@ -47,7 +48,7 @@ public class EnemyStateMachine : StateMachine
     // Método para que el jugador le haga daño
     public void TakeDamage(int damage, Vector3 knockBack)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        
 
         Health -= damage;
 
@@ -62,13 +63,14 @@ public class EnemyStateMachine : StateMachine
         else
         {
             EnemyManager.Instance.RemoveEnemy(this);
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        
 
         Health -= damage;
 
@@ -80,6 +82,7 @@ public class EnemyStateMachine : StateMachine
         }
         else
         {
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
         }
     }

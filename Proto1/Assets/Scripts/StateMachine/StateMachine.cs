@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    private State currentState;
+    protected State currentState;
 
     // Diccionario para guardar las instancias de los estados
     protected Dictionary<Type, State> states = new Dictionary<Type, State>();
