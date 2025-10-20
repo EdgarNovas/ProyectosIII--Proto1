@@ -21,9 +21,7 @@ public class PlayerAttackingState : PlayerBaseState
         
         if (FindTarget())
         {
-            //TODO: AVISAR AL ENEMY MANAGER DE CAMBIAR EL ESTADO 
-            // DEL ENEMIGO(TARGET) A ESPERAR POR EL GOLPE DEL PLAYER
-            // Apuntar al objetivo y empezar la animación
+            
             FaceTarget(target.transform);
             EnemyManager.Instance.PrepareEnemyForHit(target);
             MoveTowardsTarget();

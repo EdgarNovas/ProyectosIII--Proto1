@@ -127,13 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b165d3116dd944a89e3621187f091e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Animator>k__BackingField: {fileID: 0}
+  <Animator>k__BackingField: {fileID: 6304591089168542377}
   <Controller>k__BackingField: {fileID: 2490509197429712727}
   <MovementSpeed>k__BackingField: 3
   <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 1.2
-  <DetectionRange>k__BackingField: 10
+  <DetectionRange>k__BackingField: 25
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 2225795942132115282}
   <counterSystem>k__BackingField: {fileID: 5301647516225592045}

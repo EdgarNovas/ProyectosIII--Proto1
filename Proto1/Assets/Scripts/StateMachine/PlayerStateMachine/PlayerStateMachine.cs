@@ -194,7 +194,7 @@ public class PlayerStateMachine : StateMachine
         }
         Debug.Log("tookDamage");
         // Lógica para reducir la vida (si tienes un sistema de salud)
-        // Health.DealDamage(damage);
+         Health.DealDamage(damage);
 
         // 1. Aplicamos la fuerza del knockback al ForceReceiver
         ForceReceiver.AddForce(knockback);

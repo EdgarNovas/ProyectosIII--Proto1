@@ -16,6 +16,7 @@ public class EnemyChaseState : EnemyBaseState
         stateMachine.IsInParryableWindow = true;
         currentWindUpTime = windUpTime;
         EnemyManager.Instance.ReportParryableStatus(true);
+        stateMachine.Animator.CrossFadeInFixedTime("FlyKick", 0.1f);
     }
 
     public override void Tick(float deltaTime)
@@ -37,7 +38,7 @@ public class EnemyChaseState : EnemyBaseState
         }
         else if (distance < stateMachine.AttackRange)
         {
-            // Atacar y cambiar a estado de retirada
+            TryToHitPlayer();
             //stateMachine.Animator.SetTrigger("AirPunch");
             // Después del ataque, nos retiramos
             stateMachine.SwitchState(typeof(EnemyAttackState));
@@ -55,5 +56,26 @@ public class EnemyChaseState : EnemyBaseState
         EnemyManager.Instance.ReportParryableStatus(false);
     }
 
+    private void TryToHitPlayer()
+    {
+        // Primero, comprobamos si el jugador está en nuestro rango de ataque
+        float distanceToPlayer = Vector3.Distance(stateMachine.transform.position, GameManager.Instance.GetPlayer().position);
+        if (distanceToPlayer > stateMachine.AttackRange)
+        {
+            // El jugador esquivó o se alejó, el golpe falla.
+            return;
+        }
 
+        // Si está en rango, le aplicamos el daño y el knockback.
+        if (GameManager.Instance.GetPlayer().TryGetComponent<PlayerStateMachine>(out PlayerStateMachine player))
+        {
+            // 1. Calculamos la dirección del empujón (del enemigo hacia el jugador)
+            Vector3 knockbackDirection = (player.transform.position - stateMachine.transform.position).normalized;
+            float knockbackStrength = 5f;
+
+            // 2. Llamamos al método público del jugador
+            player.TakeDamage(10, knockbackDirection * knockbackStrength);
+            return;
+        }
+    }
 }

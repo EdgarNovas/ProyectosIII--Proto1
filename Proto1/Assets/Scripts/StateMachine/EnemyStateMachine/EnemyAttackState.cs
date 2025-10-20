@@ -79,7 +79,7 @@ public class EnemyAttackState : EnemyBaseState
         {
             // 1. Calculamos la dirección del empujón (del enemigo hacia el jugador)
             Vector3 knockbackDirection = (player.transform.position - stateMachine.transform.position).normalized;
-            float knockbackStrength = 5f; // ¡Ajusta esta fuerza!
+            float knockbackStrength = 5f; 
 
             // 2. Llamamos al método público del jugador
             player.TakeDamage(10, knockbackDirection * knockbackStrength);

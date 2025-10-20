@@ -92,10 +92,16 @@ public class EnemyManager : MonoBehaviour
     private EnemyStateMachine GetAvailableEnemy()
     {
         List<EnemyStateMachine> availableEnemies = new List<EnemyStateMachine>();
+
+        Transform player = GameManager.Instance.GetPlayer();
+        if (player == null) { return null; } // Can't find enemies if there's no player.
+
         foreach (var enemy in enemies)
         {
+
+            float distanceToPlayer = Vector3.Distance(enemy.transform.position, player.position);
             // Un enemigo está disponible si está vivo y en el estado Idle
-            if (enemy.Health > 0 && enemy.GetCurrentState().GetType() == typeof(EnemyIdleState))
+            if (enemy.Health > 0 && enemy.GetCurrentState().GetType() == typeof(EnemyIdleState) && distanceToPlayer <= enemy.DetectionRange)
             {
                 availableEnemies.Add(enemy);
             }
