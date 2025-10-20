@@ -35,13 +35,17 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float JumpForce { get; private set; }
 
-   // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
+    [field: SerializeField] public ParticleSystem ParryParticle { get; private set; }
 
-  //  [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    [field: SerializeField] private GameObject parryIndicator; 
 
-  //  [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
+    // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
 
-  //  [field: SerializeField] public Attack[] Attacks { get; private set; }
+    //  [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+
+    //  [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
+
+    //  [field: SerializeField] public Attack[] Attacks { get; private set; }
 
 
 
@@ -60,6 +64,8 @@ public class PlayerStateMachine : StateMachine
 
         AddState(new PlayerFreeLookState(this));
         AddState(new PlayerAttackingState(this));
+        AddState(new PlayerHitState(this));
+        AddState(new PlayerParryState(this));
 
         SwitchState(typeof(PlayerFreeLookState));
     }
@@ -68,6 +74,18 @@ public class PlayerStateMachine : StateMachine
     {
         StartCoroutine(ShakeRoutine(duration));
     }
+
+
+
+    private void HandleParry()
+    {
+        // Solo podemos hacer parry si no estamos ya en un estado de parry o aturdidos
+        if (currentState is PlayerParryState || currentState is PlayerHitState) { return; }
+
+        // Forzamos el cambio de estado, interrumpiendo el actual.
+        SwitchState(typeof(PlayerParryState));
+    }
+
 
     IEnumerator HitStop(float duration)
     {
@@ -105,14 +123,21 @@ public class PlayerStateMachine : StateMachine
 
     private void OnEnable()
     {
-       // Health.OnTakeDamage += HandleTakeDamage;
-       // Health.OnDie += HandleDie;
+        // Health.OnTakeDamage += HandleTakeDamage;
+        // Health.OnDie += HandleDie;
+        InputReader.ParryEvent += HandleParry;
+        EnemyManager.Instance.OnFirstParryWindowOpened += ShowParryIndicator;
+        EnemyManager.Instance.OnLastParryWindowClosed += HideParryIndicator;
     }
 
     private void OnDisable()
     {
-      //  Health.OnTakeDamage -= HandleTakeDamage;
-       // Health.OnDie -= HandleDie;
+        //  Health.OnTakeDamage -= HandleTakeDamage;
+        // Health.OnDie -= HandleDie;
+        InputReader.ParryEvent -= HandleParry;
+
+        EnemyManager.Instance.OnFirstParryWindowOpened -= ShowParryIndicator;
+        EnemyManager.Instance.OnLastParryWindowClosed -= HideParryIndicator;
     }
 
     void HandleTakeDamage()
@@ -126,5 +151,56 @@ public class PlayerStateMachine : StateMachine
     }
 
 
+    public void StartHitStopParryEffect(float duration)
+    {
+        StartCoroutine(HitStopEffectParry(0.1f));
+    }
+
+    /// <summary>
+    /// Corrutina que ralentiza el tiempo por un instante para dar sensación de impacto.
+    /// </summary>
+    public IEnumerator HitStopEffectParry(float duration)
+    {
+        Time.timeScale = 0.1f; // Ralentiza el tiempo drásticamente.
+        yield return new WaitForSecondsRealtime(duration); // Espera usando tiempo real.
+        Time.timeScale = 1.0f; // Restaura el tiempo a la normalidad.
+    }
+
+    private void ShowParryIndicator()
+    {
+        if (parryIndicator != null)
+        {
+            
+            parryIndicator.SetActive(true);
+        }
+    }
+
+    private void HideParryIndicator()
+    {
+        if (parryIndicator != null)
+        {
+            parryIndicator.SetActive(false);
+        }
+    }
+
+   
+    public void TakeDamage(int damage, Vector3 knockback)
+    {
+        Debug.Log("took no damage");
+        // Prevenimos ser golpeados si ya estamos muertos, aturdidos o haciendo parry
+        if (currentState is PlayerHitState || currentState is PlayerParryState) //current deadstate
+        {
+            return;
+        }
+        Debug.Log("tookDamage");
+        // Lógica para reducir la vida (si tienes un sistema de salud)
+        // Health.DealDamage(damage);
+
+        // 1. Aplicamos la fuerza del knockback al ForceReceiver
+        ForceReceiver.AddForce(knockback);
+
+        // 2. Forzamos el cambio de estado a la reacción de golpe
+        SwitchState(typeof(PlayerHitState));
+    }
 
 }

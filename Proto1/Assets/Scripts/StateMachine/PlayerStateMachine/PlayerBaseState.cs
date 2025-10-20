@@ -37,6 +37,19 @@ public abstract class PlayerBaseState : State
         stateMachine.transform.rotation = Quaternion.LookRotation(enemyDirection * stateMachine.RotationSpeed);
     }
 
+
+    protected void FaceTargetInstant(EnemyStateMachine enemy)
+    {
+
+        if (enemy == null) { return; }
+
+        Vector3 lookPos = enemy.transform.position - stateMachine.transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        stateMachine.transform.rotation = rotation;
+
+    }
+
     /*
     protected void ReturnToLocomotion()
     {

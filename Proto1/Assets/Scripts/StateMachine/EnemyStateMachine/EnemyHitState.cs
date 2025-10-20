@@ -20,7 +20,7 @@ public class EnemyHitState : EnemyBaseState
     {
         Debug.Log("Entered hitstate");
         currentTimeStun = 0f;
-        stateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
+        //stateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
         
     }
 
@@ -28,7 +28,7 @@ public class EnemyHitState : EnemyBaseState
     {
         
         knockbackDirection = Vector3.SmoothDamp(knockbackDirection, Vector3.zero, ref dampingVelocity, drag);
-        stateMachine.Controller.Move((knockbackDirection *10)* deltaTime);
+        stateMachine.Controller.Move((knockbackDirection *10)* 2 * deltaTime);
 
         currentTimeStun += deltaTime;
         if (currentTimeStun >= stunDuration)

@@ -34,7 +34,9 @@ public class PlayerFreeLookState : PlayerBaseState
 
         stateMachine.InputReader.DodgeEvent += OnDodge;
 
-        //stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0);
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0);
+
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
         /*
         if (shouldFade)
         {
@@ -74,14 +76,19 @@ public class PlayerFreeLookState : PlayerBaseState
         
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
         */
-        if(!Vector3.Equals(movement, Vector3.zero))
+
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, movement.normalized.magnitude, AnimatorDampTime, deltaTime);
+        if (!Vector3.Equals(movement, Vector3.zero))
         {
             FaceMovementDirection(movement, deltaTime);
-            stateMachine.Animator.Play(Walking);
+            //stateMachine.Animator.CrossFadeInFixedTime(Walking, 0.1f);
+            stateMachine.Animator.SetFloat(FreeLookSpeedHash, movement.normalized.magnitude, AnimatorDampTime, deltaTime);
+            //stateMachine.Animator.Play(Walking);
         }
         else
         {
-            stateMachine.Animator.Play(Idle);
+            //stateMachine.Animator.Play(Idle);
+            //stateMachine.Animator.CrossFadeInFixedTime(Idle, 0.1f);
         }
         
 
@@ -104,6 +111,13 @@ public class PlayerFreeLookState : PlayerBaseState
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
         
+    }
+
+    private void FaceMovementDirectionInstant(Vector3 movement)
+    {
+        stateMachine.transform.rotation = Quaternion.LookRotation(movement);
+            
+
     }
 
     Vector3 CalculateMovement()

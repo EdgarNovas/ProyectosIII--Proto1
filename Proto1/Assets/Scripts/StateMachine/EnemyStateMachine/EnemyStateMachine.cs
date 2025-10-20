@@ -10,6 +10,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; } = 3f;
+    [field: SerializeField] public float MovementAttackSpeed { get; private set; } = 20f;
     [field: SerializeField] public float RotationSpeed { get; private set; } = 3f;
     [field: SerializeField] public float AttackRange { get; private set; } = 2f;
     [field: SerializeField] public float DetectionRange { get; private set; } = 6f;
@@ -43,20 +44,20 @@ public class EnemyStateMachine : StateMachine
     void Start()
     {
         EnemyManager.Instance.AddEnemy(this);
-        // El estado inicial del enemigo será Idle
+        // El estado inicial del enemigo serï¿½ Idle
         SwitchState(typeof(EnemyIdleState));
 
         //Codigo para UI
         doorScript = FindObjectOfType<Door>();
 
         if (doorScript == null)
-            Debug.LogWarning("No se encontró ningún objeto con el script Door en la escena.");
+            Debug.LogWarning("No se encontrï¿½ ningï¿½n objeto con el script Door en la escena.");
     }
 
-    // Método para que el jugador le haga daño
+    // Mï¿½todo para que el jugador le haga daï¿½o
     public void TakeDamage(int damage, Vector3 knockBack)
     {
-        if (Health <= 0) { return; } // Ya está muerto
+        
 
         Health -= damage;
 
@@ -74,15 +75,16 @@ public class EnemyStateMachine : StateMachine
 
             //Codigo para UI
             doorScript.AddEnemyKilled();
-            Debug.Log("Enemigo Muerto");
+            
 
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (Health <= 0) {return;} // Ya está muerto
+        if (Health <= 0) { return; } // Ya estï¿½ muerto
 
         Health -= damage;
 
@@ -94,6 +96,7 @@ public class EnemyStateMachine : StateMachine
         }
         else
         {
+            Destroy(gameObject);
             //SwitchState(typeof(EnemyDeadState));
 
             //Codigo para UI
