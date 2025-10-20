@@ -64,7 +64,7 @@ Material:
     - _CausticsTiling: 1.55
     - _Depth: 2.87
     - _DepthFallOff: 8.68
-    - _FoamAmount: 1
+    - _FoamAmount: 0.3
     - _FoamCutOut: 0.01
     - _FoamDepth: 1.96
     - _FoamFallOff: 15.9
@@ -77,7 +77,7 @@ Material:
     m_Colors:
     - _CausticColor: {r: 1, g: 1, b: 1, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
-    - _FoamSpeed: {r: 0, g: 0.6, b: 0, a: 0}
+    - _FoamSpeed: {r: 0.5, g: 0, b: 0, a: 0}
     - _MainColor: {r: 0.06132078, g: 0.5569245, b: 1, a: 0}
     - _ShoreColor: {r: 0, g: 0.470897, b: 0.6981132, a: 0}
   m_BuildTextureStacks: []

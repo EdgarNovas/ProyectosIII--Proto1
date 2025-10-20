@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test/Map/Map Test Vercion.unity
+    path: Assets/Scenes/Test/Map/Map Test Version.unity
     guid: 55faa1fa586a92e49a13b6726fbed899
   - enabled: 1
     path: Assets/Scenes/MainMenuEdgar.unity
