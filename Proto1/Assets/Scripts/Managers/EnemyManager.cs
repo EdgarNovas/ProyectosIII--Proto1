@@ -100,8 +100,10 @@ public class EnemyManager : MonoBehaviour
         {
 
             float distanceToPlayer = Vector3.Distance(enemy.transform.position, player.position);
+
+            
             // Un enemigo está disponible si está vivo y en el estado Idle
-            if (enemy.Health > 0 && enemy.GetCurrentState().GetType() == typeof(EnemyIdleState) && distanceToPlayer <= enemy.DetectionRange)
+            if (enemy.Health > 0 && enemy.GetCurrentState().GetType() == typeof(EnemyIdleState) && distanceToPlayer <= enemy.DetectionRange && Mathf.Abs(enemy.transform.position.y - player.position.y) < 2.2f)
             {
                 availableEnemies.Add(enemy);
             }

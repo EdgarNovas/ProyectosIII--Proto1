@@ -18,14 +18,14 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
-        
+        defaultFOV = stateMachine.camera_CM.Lens.FieldOfView;
         if (FindTarget())
         {
             
             FaceTarget(target.transform);
             EnemyManager.Instance.PrepareEnemyForHit(target);
             MoveTowardsTarget();
-            defaultFOV = stateMachine.camera_CM.Lens.FieldOfView;
+            
             //stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
             stateMachine.Animator.CrossFadeInFixedTime("PunchFly", 0.03f);
 
@@ -41,36 +41,37 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (stateMachine.camera_CM.Lens.FieldOfView < stateMachine.camera_CM.Lens.FieldOfView + 40)
+        if (stateMachine.camera_CM.Lens.FieldOfView < defaultFOV + 40)
         {
             stateMachine.camera_CM.Lens.FieldOfView += 20 * deltaTime;
         }
-        float distance = Vector3.Distance(stateMachine.transform.position, target.transform.position);
-
-
-
-        if (distance > attackTriggerDistance)
+        if(target != null)
         {
-            FaceTarget(target.transform);
-        }
-        else if (distance < attackTriggerDistance && !hasAttacked)
-        {
-            SoundManager.Instance.PlaySound(stateMachine.attackSound);
-            int attackNum = Random.Range(0, 3);
-            if(attackNum == 0)
+            float distance = Vector3.Distance(stateMachine.transform.position, target.transform.position);
+       
+            if (distance > attackTriggerDistance)
             {
-                stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
+                FaceTarget(target.transform);
             }
-            else if(attackNum == 1)
+            else if (distance < attackTriggerDistance && !hasAttacked)
             {
-                stateMachine.Animator.CrossFadeInFixedTime("Punch", 0.1f);
-            }
-            else
-            {
-                stateMachine.Animator.CrossFadeInFixedTime("360Slash", 0.1f);
-            }
+                SoundManager.Instance.PlaySound(stateMachine.attackSound);
+                int attackNum = Random.Range(0, 3);
+                if(attackNum == 0)
+                {
+                    stateMachine.Animator.CrossFadeInFixedTime("Slash", 0.1f);
+                }
+                else if(attackNum == 1)
+                {
+                    stateMachine.Animator.CrossFadeInFixedTime("Punch", 0.1f);
+                }
+                else
+                {
+                    stateMachine.Animator.CrossFadeInFixedTime("360Slash", 0.1f);
+                }
 
-            hasAttacked = true;
+                hasAttacked = true;
+            }
         }
     }
 
@@ -78,6 +79,7 @@ public class PlayerAttackingState : PlayerBaseState
     {
         target = null;
         hasAttacked = false;
+        stateMachine.camera_CM.Lens.FieldOfView = defaultFOV;
     }
 
     private bool FindTarget()
@@ -143,7 +145,11 @@ public class PlayerAttackingState : PlayerBaseState
                 stateMachine.StartHitStop(stopHitTime);
                 stateMachine.StartCameraShake(.2f);
                 target.TakeDamage(1, knockback);
-                stateMachine.SwitchState(typeof(PlayerFreeLookState));
+                DOVirtual.DelayedCall(.2f, () =>
+                {
+                    stateMachine.SwitchState(typeof(PlayerFreeLookState));
+                });
+                
             });
 
 
