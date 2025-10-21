@@ -688,7 +688,7 @@ MonoBehaviour:
   - {fileID: 1750808488}
   - {fileID: 2076635823}
   buttonText: {fileID: 1223392441}
-  nextSceneName: Map Test Vercion
+  nextSceneName: Map Test Version
 --- !u!1 &997655907
 GameObject:
   m_ObjectHideFlags: 0
