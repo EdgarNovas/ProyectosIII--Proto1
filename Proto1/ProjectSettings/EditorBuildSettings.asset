@@ -6,10 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenuEdgar.unity
+    guid: 4eca6169a3d772b45b2a3c93b70f24a6
+  - enabled: 1
+    path: Assets/Scenes/Test/Comic.unity
+    guid: 406d3da2d17fd5f41a0bba6049a90bed
+  - enabled: 1
     path: Assets/Scenes/Test/Map/Map Test Version.unity
     guid: 55faa1fa586a92e49a13b6726fbed899
   - enabled: 1
-    path: Assets/Scenes/MainMenuEdgar.unity
-    guid: 4eca6169a3d772b45b2a3c93b70f24a6
+    path: Assets/Scenes/Test/End.unity
+    guid: 28b14c8a2283fb344bf56b324e6d78a7
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
