@@ -138,6 +138,11 @@ public class EnemyManager : MonoBehaviour
         return enemies.Count < 2;
     }
 
+    public List<EnemyStateMachine> GetEnemys()
+    {
+        return enemies;
+    }
+
     /// <summary>
     /// Busca en la lista de enemigos activos si alguno es un objetivo válido para un parry.
     /// </summary>
