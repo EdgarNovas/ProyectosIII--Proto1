@@ -133,7 +133,7 @@ MonoBehaviour:
   <MovementAttackSpeed>k__BackingField: 20
   <RotationSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 1.2
-  <DetectionRange>k__BackingField: 25
+  <DetectionRange>k__BackingField: 20
   <Health>k__BackingField: 3
   <ForceReceiver>k__BackingField: {fileID: 2225795942132115282}
   <counterSystem>k__BackingField: {fileID: 5301647516225592045}
@@ -180,7 +180,7 @@ MonoBehaviour:
   controller: {fileID: 2490509197429712727}
   agent: {fileID: 0}
   drag: 0.4
-  playerGravity: -11.4
+  playerGravity: -9
 --- !u!1001 &1140852148984051589
 PrefabInstance:
   m_ObjectHideFlags: 0
