@@ -12,6 +12,7 @@ public class Chest : MonoBehaviour
     public TMP_Text interactText;
     public InputHandler Input;
     public GameObject chestUP;
+    [field: SerializeField] public AudioClip openChest;
 
     [Header("Configuración")]
     public float distance = 2f;
@@ -34,6 +35,7 @@ public class Chest : MonoBehaviour
 
         if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
         if (chestUP != null) chestClosedRot = chestUP.transform.localRotation;
+
     }
 
     private void Update()
@@ -86,6 +88,7 @@ public class Chest : MonoBehaviour
             if (chestUP != null && chestUP != null)
             {
                 chestOpenRot = Quaternion.Euler(-openAngle, 0, 0) * chestClosedRot;
+                SoundManager.Instance.PlaySound(openChest);
                 isOpening = true;
             }
         }

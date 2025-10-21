@@ -40,7 +40,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMusic(AudioClip music)
     {
-        soundSource.PlayOneShot(music);
+        musicSource.clip=(music);
+        musicSource.Play();
     }
 
 }

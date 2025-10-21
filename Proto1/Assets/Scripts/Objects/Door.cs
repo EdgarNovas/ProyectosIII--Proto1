@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     public GameObject bolt;
     public GameObject doorL;
     public GameObject doorR;
+    [field: SerializeField] public AudioClip openDoor;
 
     private int lastEnemysKilled;
     private int lastKeys;
@@ -32,6 +33,7 @@ public class Door : MonoBehaviour
     private Quaternion doorRClosedRot;
     private Quaternion doorROpenRot;
     private bool isOpening = false;
+    
 
     void Start()
     {
@@ -96,6 +98,7 @@ public class Door : MonoBehaviour
         {
             doorLOpenRot = Quaternion.Euler(0, -openAngle, 0) * doorLClosedRot;
             doorROpenRot = Quaternion.Euler(0, openAngle, 0) * doorRClosedRot;
+            SoundManager.Instance.PlaySound(openDoor);
             isOpening = true;
         }
 

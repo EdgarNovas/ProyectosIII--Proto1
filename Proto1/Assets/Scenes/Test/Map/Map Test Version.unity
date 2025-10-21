@@ -65538,7 +65538,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -65633,7 +65633,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -82964,6 +82964,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3612039901414402036, guid: 4b5bd6ad9db63d640b4cdd1e2f3db4b7, type: 3}
   m_PrefabInstance: {fileID: 1173111948}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1173448581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173448583}
+  - component: {fileID: 1173448582}
+  m_Layer: 0
+  m_Name: Music Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1173448582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173448581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c8f38a2a86a9948b5ebad74337393c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 0dd010a205dee394a9bb198797dac684, type: 3}
+--- !u!4 &1173448583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173448581}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1174353822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138777,6 +138822,7 @@ MonoBehaviour:
   interactText: {fileID: 1101439150}
   Input: {fileID: 303766729}
   chestUP: {fileID: 1486817672}
+  openChest: {fileID: 8300000, guid: ae57e793e0b44e14b809a14051959466, type: 3}
   distance: 3
   openAngle: 90
   openSpeed: 2
@@ -147937,6 +147983,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1443206208}
     - target: {fileID: 6789855647150627223, guid: 02f69c1cd3751b141815b1725dea81d2, type: 3}
+      propertyPath: openDoor
+      value: 
+      objectReference: {fileID: 8300000, guid: e0206cb283e0aba4db2eb89a28abcd0a, type: 3}
+    - target: {fileID: 6789855647150627223, guid: 02f69c1cd3751b141815b1725dea81d2, type: 3}
       propertyPath: maxEnemys
       value: 9
       objectReference: {fileID: 0}
@@ -149216,3 +149266,4 @@ SceneRoots:
   - {fileID: 343660861}
   - {fileID: 587823199}
   - {fileID: 651456679}
+  - {fileID: 1173448583}
