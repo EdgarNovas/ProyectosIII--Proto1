@@ -55,6 +55,7 @@ public class PlayerAttackingState : PlayerBaseState
         }
         else if (distance < attackTriggerDistance && !hasAttacked)
         {
+            SoundManager.Instance.PlaySound(stateMachine.attackSound);
             int attackNum = Random.Range(0, 3);
             if(attackNum == 0)
             {

@@ -37,7 +37,11 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public ParticleSystem ParryParticle { get; private set; }
 
-    [field: SerializeField] private GameObject parryIndicator; 
+    [field: SerializeField] private GameObject parryIndicator;
+
+    [field: SerializeField] public AudioClip parrySound;
+    [field: SerializeField] public AudioClip attackSound;
+
 
     // [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
 

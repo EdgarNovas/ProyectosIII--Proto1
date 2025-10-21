@@ -62,7 +62,7 @@ public class PlayerParryState : PlayerBaseState
 
         // a) Sonido: El más importante. Un "CLANG!" metálico y satisfactorio.
         // AudioManager.Instance.Play("ParrySuccessSound"); // (Si tienes un AudioManager)
-
+        SoundManager.Instance.PlaySound(stateMachine.parrySound);
         // b) Partículas: Un destello visual en el punto de impacto.
 
         stateMachine.ParryParticle.Play();

@@ -5347,6 +5347,8 @@ MonoBehaviour:
   <JumpForce>k__BackingField: 0.73
   <ParryParticle>k__BackingField: {fileID: 2709548915075832373}
   parryIndicator: {fileID: 0}
+  parrySound: {fileID: 8300000, guid: ccb4de9c871d9fd42b5fc04e776245aa, type: 3}
+  attackSound: {fileID: 8300000, guid: 7ad43e288ce72c94ea3e656becb48241, type: 3}
 --- !u!114 &2983439868171123683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5376,6 +5378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  testStep: 10
+  health: 0
 --- !u!1001 &4426244441908872892
 PrefabInstance:
   m_ObjectHideFlags: 0
