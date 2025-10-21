@@ -15,17 +15,26 @@ Material:
   - _ENABLEDISTORTION_ON
   - _ENABLEFOAM_ON
   m_InvalidKeywords:
-  - _NORMALS_ON
+  - _ALPHAPREMULTIPLY_ON
+  - _ALPHATEST_ON
+  - _SPECULAR_SETUP
+  - _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DistortionTexture:
         m_Texture: {fileID: 2800000, guid: f245fb356e6caa846aaf27ada7c2d5aa, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -35,6 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -53,10 +66,23 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 1
+    - _AlphaClip: 1
     - _AlphaCutoff: 0.5
-    - _Distortion: 0.3
+    - _AlphaToMask: 0
+    - _AmbientEnvironmentMultiplier: 1
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Cull: 2
+    - _Distortion: 0.01
     - _Distrortion: 0.3
+    - _DstBlend: 10
     - _EdgeBlend: -0.02
+    - _EdgeDiffuse: 0.001
+    - _EdgeDistanceAttenuation: 0.001
+    - _EdgeRim: 0.001
+    - _EdgeShadowAttenuation: 1
+    - _EdgeSpecular: 0.001
     - _Emission: 0.737
     - _EnableDistortion: 1
     - _EnableFoam: 1
@@ -71,23 +97,38 @@ Material:
     - _Map2Strength: 0.2
     - _Met: 1
     - _Metallic: 0.184
+    - _NormalStrength: 1
+    - _NormalTilling: 1
     - _Normals: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RimAmount: 0.25
+    - _RimStrength: 1
+    - _RimThreshold: 0.15
     - _Smoothness: 0.465
     - _Specular: 0
     - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 1
+    - _VertexDisplacement: 2
     - _WaterDepth: 0.05
     - _WaterReflection: 0
+    - _WorkflowMode: 0
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     - __dirty: 0
     m_Colors:
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 0.6697223, g: 0.7722294, b: 0.8113208, a: 1}
     - _DeepWater: {r: 0.02669989, g: 0.14516576, b: 0.3773585, a: 1}
     - _DistSpeedMap1XYMap2ZW: {r: 0.1, g: -0.1, b: -0.2, a: 0.1}
     - _DistTilingMap1XYMap2ZW: {r: 0.2, g: 0.2, b: 0.4, a: 0.4}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShallowWater: {r: 0.12028301, g: 0.5, b: 0.48395562, a: 0.48235294}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpeedMap1XYMap2ZW: {r: 0.6, g: 0.7, b: -0.8, a: 0.6}
-    - _TilingMap1XYMap2ZW: {r: 0.35, g: 0.35, b: 0.3, a: 0.3}
+    - _TilingMap1XYMap2ZW: {r: 0.05, g: 0.05, b: 0.05, a: 0.05}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

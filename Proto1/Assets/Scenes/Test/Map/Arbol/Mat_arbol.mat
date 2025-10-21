@@ -127,8 +127,10 @@ Material:
     - _EdgeDiffuse: 0.001
     - _EdgeDistanceAttenuation: 0.001
     - _EdgeRim: 0.001
+    - _EdgeRimOffset: 0
     - _EdgeShadowAttenuation: 1
     - _EdgeSpecular: 0.001
+    - _EdgeSpecularOffset: 0
     - _EnableHorizontalBending: 1
     - _EnableVerticalBending: 1
     - _EnvironmentReflections: 1
