@@ -16,6 +16,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float DetectionRange { get; private set; } = 6f;
     [field: SerializeField] public int Health { get; private set; } = 3;
 
+
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
     [field: SerializeField] public ParticleSystem counterSystem { get; private set; }
@@ -74,7 +75,11 @@ public class EnemyStateMachine : StateMachine
             EnemyManager.Instance.RemoveEnemy(this);
 
             //Codigo para UI
-            doorScript.AddEnemyKilled();
+            if(doorScript != null)
+            {
+                doorScript.AddEnemyKilled();
+            }
+           
             
 
             Destroy(gameObject);

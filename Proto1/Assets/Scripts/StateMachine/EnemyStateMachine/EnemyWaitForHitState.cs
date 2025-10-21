@@ -11,6 +11,7 @@ public class EnemyWaitForHitState : EnemyBaseState
     {
         stateMachine.GetComponent<MeshRenderer>().material.color = Color.yellow;
         lastEnemy = EnemyManager.Instance.IsOnlyEnemy();
+        /*
         if (lastEnemy)
         {
             GameManager.Instance.TriggerLastHitCamera
@@ -18,11 +19,15 @@ public class EnemyWaitForHitState : EnemyBaseState
                 GameManager.Instance.GetPlayer(), stateMachine.transform
                 );
         }
+
+        */
+
+        stateMachine.Animator.CrossFadeInFixedTime("Block", 0.1f);
     }
 
     public override void Tick(float deltaTime)
     {
-
+        FacePlayer();
     }
 
     public override void Exit()

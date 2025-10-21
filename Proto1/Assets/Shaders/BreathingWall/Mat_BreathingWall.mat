@@ -100,8 +100,8 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BreathAmplitude: 0.031
-    - _BreathFrequency: 2.39
+    - _BreathAmplitude: 0.072
+    - _BreathFrequency: 1.71
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0

@@ -21,9 +21,7 @@ public class PlayerAttackingState : PlayerBaseState
         
         if (FindTarget())
         {
-            //TODO: AVISAR AL ENEMY MANAGER DE CAMBIAR EL ESTADO 
-            // DEL ENEMIGO(TARGET) A ESPERAR POR EL GOLPE DEL PLAYER
-            // Apuntar al objetivo y empezar la animación
+            
             FaceTarget(target.transform);
             EnemyManager.Instance.PrepareEnemyForHit(target);
             MoveTowardsTarget();
@@ -86,16 +84,44 @@ public class PlayerAttackingState : PlayerBaseState
         // Usamos SphereCast para encontrar un enemigo en frente
         //Y que el jugador no tenga que clavar el raycast
         RaycastHit hit;
-        
-
-        if (Physics.SphereCast(stateMachine.transform.position, 3f, CalculateMovement(), out hit, 10f))
+        Vector3 moveDirection = CalculateMovement();
+        if (Equals( moveDirection, Vector3.zero))
         {
-            if (hit.collider.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemy) && enemy.IsAttackable())
+            EnemyStateMachine closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+            
+            foreach(EnemyStateMachine enemy in EnemyManager.Instance.GetEnemys())
             {
-                target = enemy;
+                if (enemy == null) continue; // Skip destroyed enemies
+                float distance = Vector3.Distance(stateMachine.transform.position, enemy.transform.position);
+                if(distance < closestDistance && distance < 10f)
+                {
+                    closestDistance = distance;
+                    closestEnemy = enemy;
+                }
+            }
+
+            if (closestEnemy != null)
+            {
+               target = closestEnemy;
                 return true;
             }
+
+
         }
+        else
+        {
+            if (Physics.SphereCast(stateMachine.transform.position, 3f, moveDirection, out hit, 10f))
+            {
+                if (hit.collider.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemy) && enemy.IsAttackable())
+                {
+                    target = enemy;
+                    return true;
+                }
+            }
+        }
+
+       
         return false;
     }
 

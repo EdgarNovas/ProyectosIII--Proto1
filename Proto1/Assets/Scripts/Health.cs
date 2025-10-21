@@ -57,22 +57,5 @@ public class Health : MonoBehaviour
         return health;
     }
 
-    //Test Metode
-    void Update()
-    {
-        TestInput();
-    }
 
-    private void TestInput()
-    {
-        if ((Input.GetKeyDown(KeyCode.Equals) && Input.GetKey(KeyCode.LeftShift)) || Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            Heal(testStep);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
-        {
-            DealDamage(testStep);
-        }
-    }
 }

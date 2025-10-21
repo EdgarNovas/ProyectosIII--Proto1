@@ -14,6 +14,7 @@ public class EnemyHitState : EnemyBaseState
     public void SetKnockback(Vector3 direction)
     {
         knockbackDirection = direction;
+
     }
 
     public override void Enter()
@@ -21,7 +22,8 @@ public class EnemyHitState : EnemyBaseState
         Debug.Log("Entered hitstate");
         currentTimeStun = 0f;
         //stateMachine.GetComponent<MeshRenderer>().material.color = Color.red;
-        
+        stateMachine.Animator.CrossFadeInFixedTime("Impact", 0.1f);
+
     }
 
     public override void Tick(float deltaTime)

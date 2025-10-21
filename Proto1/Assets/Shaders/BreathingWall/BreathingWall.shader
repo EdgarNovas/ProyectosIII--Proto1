@@ -51,7 +51,7 @@ Shader "Custom/BreathingPulsingWall"
                 float breath = sin(_Time.y * _BreathFrequency) * _BreathAmplitude;
 
                 // Move vertices along their normals for organic expansion/contraction
-                float3 displacedVertex = v.vertex.xyz + v.normal * breath;
+                float3 displacedVertex = v.vertex.xyz + -v.normal * breath;
 
                 // Transform to clip space
                 o.vertex = UnityObjectToClipPos(float4(displacedVertex, 1.0));

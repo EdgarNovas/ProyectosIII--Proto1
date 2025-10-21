@@ -11,6 +11,7 @@ public class EnemyRetreatState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.Animator.CrossFadeInFixedTime("RunBack", 0.1f);
         
     }
 
